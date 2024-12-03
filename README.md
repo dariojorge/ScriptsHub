@@ -40,7 +40,7 @@ For the json file we have a few rules for the setup:
 }
 ```
 
-2. Each node has a subElement and a element:
+2. Each node has a subElement and a element:    
 ![SubElement and element](node-child.png)
 
 - The subElement is the attributes of the node:
