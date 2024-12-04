@@ -4,9 +4,13 @@
 
 Intellij-script-for-setup-runners is a tool for intellij to build the runner from a json file.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## **Introduction**
 
 Intellij-script-for-setup-runners is a project that makes the creation of the runners in the intellij be more agile and automatic, additionally maintaining the runners is easier as the json file is that we need to change.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## **Installation**
 
@@ -19,6 +23,8 @@ To install Intellij-script-for-setup-runners, follow these steps:
 5. Put the IntellijBuildEnvironementRunners.py file inside
 6. Create a json file envVariables.json
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## **Usage**
 
 To use Intellij-script-for-setup-runners, follow these steps:
@@ -28,6 +34,8 @@ To use Intellij-script-for-setup-runners, follow these steps:
 3. Add the runners settings in the json
 4. Run the python script with the command `py IntellijBuildEnvironementRunners.py`
 5. Use the project as desired.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## **How to setup the json file**
 
@@ -133,13 +141,25 @@ For the json file we have a few rules for the setup:
 
 </details>
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## **License**
 
-Intellij-script-for-setup-runners is released under the MIT License. See the **[LICENSE](https://www.blackbox.ai/share/LICENSE)** file for details.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## **Changelog**
+
+See `CHANGELOG.md` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## **Authors and Acknowledgment**
 
 Intellij-script-for-setup-runners was created by **[Dário Jorge](https://github.com/dariojorge)**.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## **FAQ**
 
@@ -147,24 +167,4 @@ Intellij-script-for-setup-runners was created by **[Dário Jorge](https://github
 
 **A:** Yes, as the json is used to maintain the runners it needs ti delete the runners before for a fresh update.
 
-**Q:** How do I install Intellij-script-for-setup-runners?
-
-**A:** Follow the installation steps in the README file.
-
-**Q:** How do I use Intellij-script-for-setup-runners?
-
-**A:** Follow the usage steps in the README file.
-
-**Q:** What license is Intellij-script-for-setup-runners released under?
-
-**A:** Intellij-script-for-setup-runners is released under the MIT License. See the **[LICENSE](https://github.com/dariojorge/Intellij-script-for-setup-runners/blob/main/LICENCE)** file for details.
-
-## **Changelog**
-
-- **0.1.7:** Update the licence
-- **0.1.6:** Move the images to the assets folder
-- **0.1.5:** Add a way to add empty nodes
-- **0.1.4:** Adding the text element for the nodes
-- **0.1.2:** Update the README
-- **0.1.1:** Changing the json name to runners.json
-- **0.1.0:** Initial release
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
