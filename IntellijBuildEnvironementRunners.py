@@ -2,7 +2,7 @@ import time, os.path
 import json
 import xml.etree.ElementTree as ET
 
-pathEnv = 'envVariables.json'
+pathEnv = 'runners.json'
 pathScripts = os.path.dirname(__file__)
 pathRoot = os.path.dirname(pathScripts)
 pathXml = os.path.realpath(pathRoot + "/.idea/workspace.xml")
