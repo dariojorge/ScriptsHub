@@ -41,27 +41,27 @@ For the json file we have a few rules for the setup:
 ```
 
 2. Each node has a subElement, text and a element:    
-![SubElement, Text and element](node-child.png)
+![SubElement, Text and element](assets/node-child.png)
 
 - The subElement is the attributes of the node:
     - Json example  
-    ![Child SubElement Json](node-sub-element-json.png)
+    ![Child SubElement Json](assets/node-sub-element-json.png)
     - Xml example
-    ![Child SubElement Xml](node-sub-element-xml.png)
+    ![Child SubElement Xml](assets/node-sub-element-xml.png)
 - The element is where we define the child nodes:
     - Json example   
-    ![Child Node Json](node-child-json.png)
+    ![Child Node Json](assets/node-child-json.png)
     - Xml example  
-    ![Child Node Xml](node-child-xml.png)
+    ![Child Node Xml](assets/node-child-xml.png)
 - The text is where we define the value for the node:
     - Json example   
-    ![Child Text Json](node-text-json.png)
+    ![Child Text Json](assets/node-text-json.png)
     - Xml example    
-    ![Child Text Xml](node-text-xml.png)
+    ![Child Text Xml](assets/node-text-xml.png)
 3. The element will have the nodes required for the runner, example:
-    ![Element Nodes](element-nodes.png)
+    ![Element Nodes](assets/element-nodes.png)
 - In the example we have the module and the option, this will create the xml nodes module and option.
-    ![Created Nodes](created-nodes.png)
+    ![Created Nodes](assets/created-nodes.png)
 
 <details>
 
@@ -161,4 +161,9 @@ Intellij-script-for-setup-runners was created by **[Dário Jorge](https://github
 
 ## **Changelog**
 
+- **0.1.6:** Move the images to the assets folder
+- **0.1.5:** Add a way to add empty nodes
+- **0.1.4:** Adding the text element for the nodes
+- **0.1.2:** Update the README
+- **0.1.1:** Changing the json name to runners.json
 - **0.1.0:** Initial release
