@@ -48,20 +48,26 @@ def buildRunnerWithJson(parentElem, json, elemName):
 
 def buildNewElement(parentElem, elemName, newElement, json, jsonKey):
     if jsonKey == _text:
-        if newElement is None:
-            ET.SubElement(parentElem, elemName).text = json
-            return None
-        if newElement is not None:
-            newElement.text = json
-            return newElement
+        return buildNodeText(parentElem, json, elemName, newElement)
     if jsonKey == _subElement:
         return buildSubElementWithJson(parentElem, elemName, json)
     if jsonKey == _element:
-        if newElement is None:
-            buildElemWithJson(ET.SubElement(parentElem, elemName), json)
-        if newElement is not None:
-            buildElemWithJson(newElement, json)
+        buildElement(parentElem, json, elemName, newElement)
         return None
+
+def buildNodeText(parentElem, json, elemName, newElement):
+    if newElement is None:
+        ET.SubElement(parentElem, elemName).text = json
+        return None
+    if newElement is not None:
+        newElement.text = json
+        return newElement
+
+def buildElement(parentElem, json, elemName, newElement):
+    if newElement is None:
+        buildElemWithJson(ET.SubElement(parentElem, elemName), json)
+    if newElement is not None:
+        buildElemWithJson(newElement, json)
 
 def buildSubElementWithJson(parentElem, elemName, json):
     newElement = ET.SubElement(parentElem, elemName)
