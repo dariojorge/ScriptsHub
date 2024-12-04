@@ -48,8 +48,12 @@ def buildRunnerWithJson(parentElem, json, elemName):
 
 def buildNewElement(parentElem, elemName, newElement, json, jsonKey):
     if jsonKey == _text:
-        newElement.text = json
-        return newElement
+        if newElement is None:
+            ET.SubElement(parentElem, elemName).text = json
+            return None
+        if newElement is not None:
+            newElement.text = json
+            return newElement
     if jsonKey == _subElement:
         return buildSubElementWithJson(parentElem, elemName, json)
     if jsonKey == _element:
@@ -67,6 +71,8 @@ def buildSubElementWithJson(parentElem, elemName, json):
 
 def buildElemWithJson(parentElem, json):
     for elem in json:
+        if len(json[elem]) == 0:
+            ET.SubElement(parentElem, elem)
         if type(json[elem]) is list:
             for jsonElem in json[elem]:
                 buildRunnerWithJson(parentElem, jsonElem, elem)
