@@ -40,19 +40,24 @@ For the json file we have a few rules for the setup:
 }
 ```
 
-2. Each node has a subElement and a element:    
-![SubElement and element](node-child.png)
+2. Each node has a subElement, text and a element:    
+![SubElement, Text and element](node-child.png)
 
 - The subElement is the attributes of the node:
     - Json example  
-    ![Child Node Examples](node-sub-element-json.png)
+    ![Child SubElement Json](node-sub-element-json.png)
     - Xml example
-    ![Child Node Examples](node-sub-element-xml.png)
+    ![Child SubElement Xml](node-sub-element-xml.png)
 - The element is where we define the child nodes:
     - Json example   
     ![Child Node Json](node-child-json.png)
     - Xml example  
     ![Child Node Xml](node-child-xml.png)
+- The text is where we define the value for the node:
+    - Json example   
+    ![Child Text Json](node-text-json.png)
+    - Xml example    
+    ![Child Text Xml](node-text-xml.png)
 3. The element will have the nodes required for the runner, example:
     ![Element Nodes](element-nodes.png)
 - In the example we have the module and the option, this will create the xml nodes module and option.
@@ -98,7 +103,8 @@ For the json file we have a few rules for the setup:
                     {
                         "subElement": {
                             "name": "profile"
-                        }
+                        },
+                        "text": "textExample"
                     }
                 ]
             }
@@ -120,7 +126,7 @@ For the json file we have a few rules for the setup:
         </map>
     </option>
     <module name="module name" />
-    <option name="profile" />
+    <option name="profile">textExample</option>
     <method v="2" />
 </configuration>
 ```

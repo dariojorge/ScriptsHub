@@ -17,6 +17,7 @@ _list = "list"
 _name = "name"
 _run_manager = "RunManager"
 _subElement = "subElement"
+_text = "text"
 ### End Python Global Vars
 
 ### Python Functions
@@ -46,6 +47,9 @@ def buildRunnerWithJson(parentElem, json, elemName):
         newElement = buildNewElement(parentElem, elemName, newElement, json[jsonKey], jsonKey)
 
 def buildNewElement(parentElem, elemName, newElement, json, jsonKey):
+    if jsonKey == _text:
+        newElement.text = json
+        return newElement
     if jsonKey == _subElement:
         return buildSubElementWithJson(parentElem, elemName, json)
     if jsonKey == _element:
