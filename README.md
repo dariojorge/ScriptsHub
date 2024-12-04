@@ -24,7 +24,7 @@ To install Intellij-script-for-setup-runners, follow these steps:
 To use Intellij-script-for-setup-runners, follow these steps:
 
 1. Open the project in your favorite code editor.
-2. Open the file envVariables.json.
+2. Open the file **runners.json**.
 3. Add the runners settings in the json
 4. Run the python script with the command `py IntellijBuildEnvironementRunners.py`
 5. Use the project as desired.
