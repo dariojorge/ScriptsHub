@@ -157,10 +157,11 @@ Intellij-script-for-setup-runners was created by **[Dário Jorge](https://github
 
 **Q:** What license is Intellij-script-for-setup-runners released under?
 
-**A:** Intellij-script-for-setup-runners is released under the MIT License. See the **[LICENSE](https://www.blackbox.ai/share/LICENSE)** file for details.
+**A:** Intellij-script-for-setup-runners is released under the MIT License. See the **[LICENSE](https://github.com/dariojorge/Intellij-script-for-setup-runners/blob/main/LICENCE)** file for details.
 
 ## **Changelog**
 
+- **0.1.7:** Update the licence
 - **0.1.6:** Move the images to the assets folder
 - **0.1.5:** Add a way to add empty nodes
 - **0.1.4:** Adding the text element for the nodes
