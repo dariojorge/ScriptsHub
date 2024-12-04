@@ -19,10 +19,6 @@
 - Move the images to the assets folder
 - Added the LICENCE
 
-### Removed
-
-- Some packages/libraries from acknowledgements I no longer use
-
 ## v0.0.1
 
 - Initial commit
