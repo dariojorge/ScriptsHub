@@ -5,6 +5,7 @@
 ### Added or Changed
 - Added the CHANGELOG.md
 - Update the README
+- Fixing the back to top button
 
 
 ## v0.1.0
