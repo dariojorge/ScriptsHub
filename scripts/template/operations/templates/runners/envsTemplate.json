@@ -1,7 +1,7 @@
 {
   "envs": [
     {
-      "type": "test",
+      "type": "ENVIRONMENT_TYPE",
       "env": [
         {
           "key": "ENVIRONMENT_NAME",

@@ -26,7 +26,7 @@ const getType = (argsObj) => {
 const executeScript = (argsObj) => {
     const selectedType=getSelectedType(argsObj);
     const scriptExecute = require(selectedType.script);
-    
+
     scriptExecute.execute(argsObj);
 }
 

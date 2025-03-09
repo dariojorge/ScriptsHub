@@ -37,7 +37,7 @@ const getProjectList = (argsObj) => {
     return getDirectories();
 }
 
-const getDirectories = () => fs.readdirSync(projectsPath).filter(file => fs.statSync(projectsPath + '/' + file).isDirectory());
+const getDirectories = () => fs.readdirSync(projectsPath).filter(file => fs.statSync(projectsPath + '/' + file).isDirectory() && !file.includes("demo-"));
 
 const executeScript = (argsObj) => {
     const selectedType = getSelectedTypeObj(argsObj);

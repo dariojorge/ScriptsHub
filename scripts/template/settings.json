@@ -1,0 +1,12 @@
+{
+  "types": [
+    {
+      "type": "runner",
+      "script": "./operations/generateRunner.js"
+    },
+    {
+      "type": "script",
+      "script": "./operations/generateScript.js"
+    }
+  ]
+}

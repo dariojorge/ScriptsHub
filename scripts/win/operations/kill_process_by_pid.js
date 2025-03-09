@@ -1,21 +1,32 @@
 const execSync = require('child_process').execSync;
 const portLabel = "port=";
 
-let execute = (argsObj) => {
-    const port = argsObj.args.filter(arg => arg.includes(portLabel))[0]
-    const pid = getPid(port.replace(portLabel, ""));
+const execute = (argsObj) => {
+    const argsObj = buildArgsObj(args);
+    const pid = getPid(argsObj);
+
     killProcess(pid);
 };
 
-getRegex = (regex) => {
-    return new RegExp(regex, 'gi');
+const buildArgsObj = (argsObj) => {
+    return {
+        port: getPort(argsObj.args)
+    };
 }
 
-getNetStatData = () => {
-    return execSync("netstat -a -n -o");
+const getPort = (args) => {
+    const portList = args.filter(arg => arg.includes(portLabel))
+
+    if (portList.length < 1) {
+        console.error("Missing env argument.");
+        return undefined;
+    }
+
+    return portList[0].replace(portLabel, "");
 }
 
-getPid = (port) => {
+const getPid = (argsObj) => {
+    const port = argsObj.port;
     const netStatData = getNetStatData();
     const regexPort = getRegex(`${port}.*`);
     const dataFilteredList = netStatData.toString("utf8").match(regexPort);
@@ -30,9 +41,10 @@ getPid = (port) => {
     return dataFilteredList[0].replace(regexCleanAllData, "").replace(regexCleanSpaces, "");
 }
 
-killProcess = (pid) => {
-    return execSync(`TASKKILL /PID ` + pid + ` /f`);
-}
+const getNetStatData = () => execSync("netstat -a -n -o");
 
+const getRegex = (regex) => new RegExp(regex, 'gi');
+
+const killProcess = (pid) => execSync(`TASKKILL /PID ` + pid + ` /f`);
 
 module.exports.execute = execute;

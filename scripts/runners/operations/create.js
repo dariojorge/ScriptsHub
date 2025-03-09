@@ -23,14 +23,13 @@ const execute = (args) => {
 
 const buildArgsObj = (argsObj) => {
     return {
-        createFiles: getCreateFile(argsObj),
+        createFiles: getCreateFile(argsObj.args),
         project: argsObj.project
     };
 }
 
-const getCreateFile = (argObj) => {
-    console.log(argObj.args);
-    let createFilesArgList = argObj.args.filter(arg => arg.includes(createFilesLabel));
+const getCreateFile = (args) => {
+    let createFilesArgList = args.filter(arg => arg.includes(createFilesLabel));
 
     if(createFilesArgList < 1) {
         console.error("No createFiles setUp using the default value.");

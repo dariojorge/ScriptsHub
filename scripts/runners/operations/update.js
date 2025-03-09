@@ -34,7 +34,7 @@ const buildArgsObj = (argsObj) => {
 const getReplace = (type) => type === "update";
 
 const getEnvData = (argsObj) => {
-    const envSelected = getEnv(argsObj);
+    const envSelected = getEnv(argsObj.args);
     const envFile = getEnvFile(argsObj.project);
 
     if(envFile.envs === undefined || envFile.envs.length < 1) {
@@ -45,8 +45,8 @@ const getEnvData = (argsObj) => {
     return envFile.envs.filter(env => env.type === envSelected)[0];
 }
 
-const getEnv = (argsObj) => {
-    const envList = argsObj.args.filter(arg => arg.includes(envLabel))
+const getEnv = (args) => {
+    const envList = args.filter(arg => arg.includes(envLabel))
 
     if (envList.length < 1) {
         console.error("Missing env argument.");

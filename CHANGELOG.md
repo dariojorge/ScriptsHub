@@ -1,7 +1,13 @@
 # Changelog
 
-## v0.0.1
+## v0.1.0
+### Added or Changed
+- Added Template generation for the runners
+- Added Template generation for the scripts
+- Added Demo example for quarkus for the runners
 
+## v0.0.1
+### Added or Changed
 - Initial commit
 - Available scripts:
   - runners

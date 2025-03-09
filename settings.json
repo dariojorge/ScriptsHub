@@ -2,7 +2,7 @@
   "types": [
     {
       "type": "runners",
-      "script": "/runners/runner.js"
+      "script": "/runners/runners.js"
     },
     {
       "type": "docker",
@@ -14,11 +14,15 @@
     },
     {
       "type": "win",
-      "script": "/win/win_scripts.js"
+      "script": "/win/win.js"
     },
     {
       "type": "template",
       "script": "/template/template.js"
+    },
+    {
+      "type": "demo",
+      "script": "/demo/demo.js"
     }
   ]
 }
