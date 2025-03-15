@@ -50,7 +50,8 @@ To use Script Hub, follow these steps:
 | `./scriptHub.sh scriptType=docker type=TBD`         (WIP)                                              | TBD                                                                                                  |
 | `./scriptHub.sh scriptType=template type=script scriptName=<scriptName> operationName=<operationName>` | This command is to generate a new default script structure                                           |
 | `./scriptHub.sh scriptType=template type=runner projectName=<projectName> techType=<techType>`         | This command is to generate a new default runner structure for a project                             |
-| `./scriptHub.sh scriptType=demo type=quarkus demoType=<projectName>`                                   | This command sets up the quarkus demo to be used                                                     |
+| `./scriptHub.sh scriptType=demo type=quarkus demoType=demo-quarkus version=<java-version>`             | This command sets up the quarkus demo to be used **Note:** The java version should be 17+            |
+
 **Note:** The Runners scripts where made for the intellij IDE
 
 <p style="text-align:right;">(<a href="#readme-top">back to top</a>)</p>
