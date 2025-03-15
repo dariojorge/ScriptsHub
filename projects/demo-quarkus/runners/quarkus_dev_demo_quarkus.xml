@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="[QUARKUS] Demo Quarkus V2" type="QuarkusRunConfiguration" factoryName="QuarkusRunConfiguration">
+    <configuration default="false" name="[QUARKUS-DEV] Demo Quarkus" type="QuarkusRunConfiguration" factoryName="QuarkusRunConfiguration">
         <option name="env">
             <map>
                 <entry key="DEMO_MESSAGE" value="DEMO_MESSAGE" />
