@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.1
+### Added or Changed
+- Bugfix: Added the option to configure the java version
+- Feature: Changed the readme documentation
+
 ## v0.1.0
 ### Added or Changed
 - Added Template generation for the runners
