@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="[QUARKUS-DEV] Demo Quarkus" type="QuarkusRunConfiguration" factoryName="QuarkusRunConfiguration">
+        <option name="env">
+            <map>
+                <entry key="DEMO_MESSAGE" value="DEMO_MESSAGE" />
+            </map>
+        </option>
+        <module name="demo-quarkus" />
+        <option name="profile" />
+        <method v="2" />
+    </configuration>
+</component>

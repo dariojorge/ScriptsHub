@@ -1,0 +1,16 @@
+{
+  "types": [
+    {
+      "type": "update",
+      "script": "./operations/update.js"
+    },
+    {
+      "type": "test",
+      "script": "./operations/update.js"
+    },
+    {
+      "type": "create",
+      "script": "./operations/create.js"
+    }
+  ]
+}

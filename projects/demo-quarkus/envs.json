@@ -1,0 +1,22 @@
+{
+  "envs": [
+    {
+      "type": "custom-message",
+      "env": [
+        {
+          "key": "DEMO_MESSAGE",
+          "value": "This is a custom message."
+        }
+      ]
+    },
+    {
+      "type": "test",
+      "env": [
+        {
+          "key": "DEMO_MESSAGE",
+          "value": "This is a message from the test env setting."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "types": [
+    {
+      "type": "runners",
+      "script": "/runners/runners.js"
+    },
+    {
+      "type": "docker",
+      "script": "/docker/docker.js"
+    },
+    {
+      "type": "git",
+      "script": "/git/git.js"
+    },
+    {
+      "type": "win",
+      "script": "/win/win.js"
+    },
+    {
+      "type": "template",
+      "script": "/template/template.js"
+    },
+    {
+      "type": "demo",
+      "script": "/demo/demo.js"
+    }
+  ]
+}
