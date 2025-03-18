@@ -1,4 +1,4 @@
-const args = process.argv.slice(2);
+let args = process.argv.slice(2);
 const scriptTypeLabel="scriptType=";
 const scriptPath="./scripts";
 
@@ -8,6 +8,8 @@ const init = () => {
         process.exit(1);
     }
 
+    extractTextFromArguments();
+
     const scriptType = getScriptType();
     const settings = getSettings(scriptType);
     const scriptExecute = require(scriptPath+settings.script);
@@ -15,6 +17,27 @@ const init = () => {
     removeScriptTypeFromArgs(scriptType);
 
     scriptExecute.execute(args);
+}
+
+const extractTextFromArguments = () => {
+    const singleArgs = joinAllArguments();
+    const searchForText = new RegExp(`(\\w+)=[\"]([^\"]*)[\"]`, 'gi');
+    const searchForOtherArgs = new RegExp(`(\\w+)=(\\w+)`, 'gi');
+
+    const matchedText = singleArgs.match(searchForText);
+    const matchedArgs = singleArgs.match(searchForOtherArgs);
+
+    args = [];
+    args.push(...matchedText);
+    args.push(...matchedArgs);
+}
+
+const joinAllArguments = () => {
+    let allArgsIntoText = "";
+    args.forEach(data => {
+        allArgsIntoText += data + " ";
+    });
+    return allArgsIntoText;
 }
 
 const getScriptType = () => {
