@@ -1,16 +1,22 @@
 {
   "types": [
     {
+      "name": "update",
       "type": "update",
-      "script": "./operations/update.js"
+      "basePath": "./operations/",
+      "script": "update.js"
     },
     {
+      "name": "test",
       "type": "test",
-      "script": "./operations/update.js"
+      "basePath": "./operations/",
+      "script": "update.js"
     },
     {
+      "name": "create",
       "type": "create",
-      "script": "./operations/create.js"
+      "basePath": "./operations/",
+      "script": "create.js"
     }
   ]
 }

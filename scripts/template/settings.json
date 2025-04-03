@@ -1,12 +1,16 @@
 {
   "types": [
     {
+      "name": "runner",
       "type": "runner",
-      "script": "./operations/generateRunner.js"
+      "basePath": "./operations/",
+      "script": "generateRunner.js"
     },
     {
+      "name": "script",
       "type": "script",
-      "script": "./operations/generateScript.js"
+      "basePath": "./operations/",
+      "script": "generateScript.js"
     }
   ]
 }

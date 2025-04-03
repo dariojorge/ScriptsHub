@@ -1,8 +1,10 @@
 {
   "types": [
     {
+      "name": "quarkus",
       "type": "quarkus",
-      "script": "./operations/quarkus.js"
+      "basePath": "./operations/",
+      "script": "quarkus.js"
     }
   ]
 }

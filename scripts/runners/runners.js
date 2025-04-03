@@ -41,7 +41,7 @@ const getDirectories = () => fs.readdirSync(projectsPath).filter(file => fs.stat
 
 const executeScript = (argsObj) => {
     const selectedType = getSelectedTypeObj(argsObj);
-    const scriptExecute = require(selectedType.script);
+    const scriptExecute = require(`${selectedType.basePath}${selectedType.script}`);
 
     argsObj.projects.forEach(project => {
         argsObj.project = project;

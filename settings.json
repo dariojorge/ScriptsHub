@@ -1,28 +1,40 @@
 {
   "types": [
     {
+      "name": "runners",
       "type": "runners",
-      "script": "/runners/runners.js"
+      "basePath": "/runners/",
+      "script": "runners.js"
     },
     {
+      "name": "docker",
       "type": "docker",
-      "script": "/docker/docker.js"
+      "basePath": "/docker/",
+      "script": "docker.js"
     },
     {
+      "name": "git",
       "type": "git",
-      "script": "/git/git.js"
+      "basePath": "/git/",
+      "script": "git.js"
     },
     {
+      "name": "win",
       "type": "win",
-      "script": "/win/win.js"
+      "basePath": "/win/",
+      "script": "win.js"
     },
     {
+      "name": "template",
       "type": "template",
-      "script": "/template/template.js"
+      "basePath": "/template/",
+      "script": "template.js"
     },
     {
+      "name": "demo",
       "type": "demo",
-      "script": "/demo/demo.js"
+      "basePath": "/demo/",
+      "script": "demo.js"
     }
   ]
 }
