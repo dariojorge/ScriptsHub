@@ -1,8 +1,10 @@
 {
   "types": [
     {
+      "name": "squash",
       "type": "squash",
-      "script": "./operations/squash.js"
+      "basePath": "./operations/",
+      "script": "squash.js"
     }
   ]
 }

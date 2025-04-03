@@ -117,8 +117,10 @@ const getEditSettingsFile = (argsObj) => {
     }
 
     const settingsJson = {
+        "name": argsObj.scriptName,
         "type": argsObj.scriptName,
-        "script": "/" + argsObj.scriptName + "/" + argsObj.scriptName + ".js"
+        "basePath": `/${argsObj.scriptName}/`,
+        "script": `${argsObj.scriptName}.js`
     }
     jsonData.types.push(settingsJson);
 
@@ -138,8 +140,10 @@ const getEditScriptsSettingsFile = (argsObj) => {
     }
 
     const settingsJson = {
+        "name": argsObj.operationName,
         "type": argsObj.operationName,
-        "script": "./operations/" + argsObj.operationName + ".js"
+        "basePath": "./operations/",
+        "script": `${argsObj.operationName}.js`
     }
     jsonData.types.push(settingsJson);
 

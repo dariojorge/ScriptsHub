@@ -2,6 +2,10 @@
 
 ## v0.1.2
 ### Added or Changed
+- Feature: Changed the settings.json to add the name and split the script by basePath and script
+
+## v0.1.2
+### Added or Changed
 - Feature: Added editorconfig for the configuration of the intellij project
 - Feature: Added the possibility to put text as a value in the script arguments
 - Feature: Added the git squash script

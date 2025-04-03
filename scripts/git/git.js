@@ -25,7 +25,7 @@ const getType = (argsObj) => {
 
 const executeScript = (argsObj) => {
     const selectedType=getSelectedType(argsObj);
-    const scriptExecute = require(selectedType.script);
+    const scriptExecute = require(`${selectedType.basePath}${selectedType.script}`);
 
     scriptExecute.execute(argsObj);
 }

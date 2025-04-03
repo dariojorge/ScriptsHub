@@ -1,8 +1,10 @@
 {
   "types": [
     {
+      "name": "kill_port_usage",
       "type": "kill_port_usage",
-      "script": "./operations/kill_process_by_pid.js"
+      "basePath": "./operations/",
+      "script": "kill_process_by_pid.js"
     }
   ]
 }

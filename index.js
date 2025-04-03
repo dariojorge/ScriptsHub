@@ -12,7 +12,7 @@ const init = () => {
 
     const scriptType = getScriptType();
     const settings = getSettings(scriptType);
-    const scriptExecute = require(scriptPath+settings.script);
+    const scriptExecute = require(`${scriptPath}${settings.basePath}${settings.script}`);
 
     removeScriptTypeFromArgs(scriptType);
 
@@ -22,14 +22,21 @@ const init = () => {
 const extractTextFromArguments = () => {
     const singleArgs = joinAllArguments();
     const searchForText = new RegExp(`(\\w+)=[\"]([^\"]*)[\"]`, 'gi');
-    const searchForOtherArgs = new RegExp(`(\\w+)=(\\w+)`, 'gi');
+    const searchForOtherArgs = new RegExp(`(\\w+)=(\\S+)`, 'gi');
 
     const matchedText = singleArgs.match(searchForText);
     const matchedArgs = singleArgs.match(searchForOtherArgs);
 
     args = [];
-    args.push(...matchedText);
-    args.push(...matchedArgs);
+
+    if(matchedText) {
+        args.push(...matchedText);
+    }
+
+    if(matchedArgs) {
+        args.push(...matchedArgs);
+    }
+
 }
 
 const joinAllArguments = () => {
