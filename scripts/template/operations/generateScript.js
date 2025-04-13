@@ -1,12 +1,17 @@
 const fs = require("fs");
-const scriptNameLabel = "scriptName=";
-const operationNameLabel = "operationName=";
+const { getArgValue, isListEmpty } = require("./../../utils/utils");
+const scriptNameLabel = "scriptName";
+const operationNameLabel = "operationName";
 const folderPath = "scripts/{scriptName}";
 const templateFolderPath = "scripts/template/operations/templates/scripts";
 
+const options = {
+    encoding: "utf8"
+};
+
 const execute = (args) => {
-    let argsObj = buildArgsObj(args);
-    argsObj = getFolderPathName(argsObj);
+    const argsObj = buildArgsObj(args);
+    argsObj.folderPath = getFolderPathName(argsObj);
 
     createScriptFolders(argsObj);
     creatingAllTheDefaultFiles(argsObj);
@@ -17,37 +22,12 @@ const execute = (args) => {
 const buildArgsObj = (argsObj) => {
     return {
         type: argsObj.type,
-        scriptName: getScriptName(argsObj.args),
-        operationName: getOperationName(argsObj.args)
+        scriptName: getArgValue(argsObj.args, scriptNameLabel),
+        operationName: getArgValue(argsObj.args, operationNameLabel)
     };
 }
 
-const getScriptName = (args) => {
-    const scriptNameList = args.filter(arg => arg.includes(scriptNameLabel))
-
-    if (scriptNameList.length < 1) {
-        console.error("Missing env argument.");
-        return undefined;
-    }
-
-    return scriptNameList[0].replace(scriptNameLabel, "");
-}
-
-const getOperationName = (args) => {
-    const operationNameList = args.filter(arg => arg.includes(operationNameLabel))
-
-    if (operationNameList.length < 1) {
-        console.error("Missing env argument.");
-        return undefined;
-    }
-
-    return operationNameList[0].replace(operationNameLabel, "");
-}
-
-const getFolderPathName = (argsObj) => {
-    argsObj.folderPath = folderPath.replace("{scriptName}", argsObj.scriptName);
-    return argsObj;
-};
+const getFolderPathName = (argsObj) => folderPath.replace("{scriptName}", argsObj.scriptName);
 
 const createScriptFolders = (argsObj) => {
     if (fs.existsSync(argsObj.folderPath)) {
@@ -108,10 +88,10 @@ createOperationFile = (filePathObj) => {
 const getEditSettingsFile = (argsObj) => {
     const settingsFilePath = "settings.json";
 
-    const data = fs.readFileSync(settingsFilePath, 'utf8');
+    const data = fs.readFileSync(settingsFilePath, options);
     const jsonData = JSON.parse(data);
 
-    if (!validateSettingsJsonFile(jsonData, argsObj).length < 1) {
+    if (!isListEmpty(validateSettingsJsonFile(jsonData, argsObj))) {
         console.error("This script already exists.");
         return;
     }
@@ -124,17 +104,17 @@ const getEditSettingsFile = (argsObj) => {
     }
     jsonData.types.push(settingsJson);
 
-    fs.writeFileSync(settingsFilePath, JSON.stringify(jsonData), 'utf8');
+    fs.writeFileSync(settingsFilePath, JSON.stringify(jsonData), options);
 }
 
 const getEditScriptsSettingsFile = (argsObj) => {
     const settingsFilePath = "/settings.json";
     const scriptsSettingsFilePath = argsObj.folderPath + settingsFilePath;
 
-    const data = fs.readFileSync(scriptsSettingsFilePath, 'utf8');
+    const data = fs.readFileSync(scriptsSettingsFilePath, options);
     const jsonData = JSON.parse(data);
 
-    if (!validateScriptSettingsJsonFile(jsonData, argsObj).length < 1) {
+    if (!isListEmpty(validateScriptSettingsJsonFile(jsonData, argsObj))) {
         console.error("This operation already exists.");
         return;
     }
@@ -147,7 +127,7 @@ const getEditScriptsSettingsFile = (argsObj) => {
     }
     jsonData.types.push(settingsJson);
 
-    fs.writeFileSync(scriptsSettingsFilePath, JSON.stringify(jsonData), 'utf8');
+    fs.writeFileSync(scriptsSettingsFilePath, JSON.stringify(jsonData), options);
 }
 
 const validateSettingsJsonFile = (jsonData, argsObj) => jsonData.types.filter(data => data.type===argsObj.scriptName);

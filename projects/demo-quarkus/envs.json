@@ -1,22 +1,102 @@
 {
   "envs": [
     {
-      "type": "custom-message",
+      "type": "test",
       "env": [
         {
-          "key": "DEMO_MESSAGE",
-          "value": "This is a custom message."
+          "key": "DEMO_MESSAGE_01",
+          "value": "This message is a message."
+        },
+        {
+          "key": "DEMO_MESSAGE_02",
+          "value": "When this is a message."
+        },
+        {
+          "key": "DEMO_MESSAGE_03",
+          "value": "Why message?"
         }
       ]
     },
     {
-      "type": "test",
+      "type": "test-without-message-2",
       "env": [
         {
-          "key": "DEMO_MESSAGE",
-          "value": "This is a message from the test env setting."
+          "key": "DEMO_MESSAGE_01",
+          "value": "This message is a message on second environment config."
+        },
+        {
+          "key": "DEMO_MESSAGE_03",
+          "value": "Why message on second environment config.?"
         }
       ]
+    },
+    {
+      "type": "test-without-message-3",
+      "env": [
+        {
+          "key": "DEMO_MESSAGE_01",
+          "value": "This message is a message on third environment config."
+        },
+        {
+          "key": "DEMO_MESSAGE_02",
+          "value": "When this is a message on third environment config."
+        }
+      ]
+    },
+    {
+      "type": "test-without-message-2-and-3",
+      "env": [
+        {
+          "key": "DEMO_MESSAGE_01",
+          "value": "This message is a message on forth environment config."
+        }
+      ]
+    }
+  ],
+  "additionalEnvs": [
+    {
+      "type": "read",
+      "filePath": "../demo-quarkus/demoExamples/demoEnvs.txt",
+      "regexSearch": "{ORIGIN}=.*",
+      "regexReplace": ".*=",
+      "env": [
+        {
+          "key": "DEMO_MESSAGE_01",
+          "origin": "demoMessage01"
+        },
+        {
+          "key": "DEMO_MESSAGE_02",
+          "origin": "demoMessage02"
+        }
+      ]
+    },
+    {
+      "type": "execute",
+      "filePath": "../../../utils/additionalEnvSpecific.js",
+      "env": [
+        {
+          "key": "DEMO_MESSAGE_03",
+          "value": "Why message on the execute additionalEnvs?"
+        }
+      ]
+    }
+  ],
+  "additionalCmd": [
+    {
+      "type": "arg",
+      "value": "showDemoEnvsContent",
+      "cmd": "cat ../demo-quarkus/demoExamples/demoEnvs.txt"
+    },
+    {
+      "type": "execute",
+      "value": "true",
+      "cmd": "ls ../demo-quarkus/demoExamples"
+    }
+  ],
+  "additionalData": [
+    {
+      "type": "WORKING_ENV",
+      "envs": ["test-without-message-2-and-3"]
     }
   ]
 }

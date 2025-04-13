@@ -1,6 +1,7 @@
 const fs = require("fs");
-const projectNameLabel = "projectName=";
-const techTypeLabel = "techType=";
+const { getArgValue, isListEmpty, firstElement } = require("./../../utils/utils");
+const projectNameLabel = "projectName";
+const techTypeLabel = "techType";
 const projectsFolder = "./projects";
 const templateRunnerFolderPath = "scripts/template/operations/templates";
 const templateEnvJson = "envsTemplate.json";
@@ -23,31 +24,9 @@ const execute = (args) => {
 
 const buildArgsObj = (argsObj) => {
     return {
-        projectName: getProjectName(argsObj.args),
-        techType: getTechType(argsObj.args)
+        projectName: getArgValue(argsObj.args, projectNameLabel),
+        techType: getArgValue(argsObj.args, techTypeLabel)
     };
-}
-
-const getProjectName = (args) => {
-    const projectNameList = args.filter(arg => arg.includes(projectNameLabel))
-
-    if (projectNameList.length < 1) {
-        console.error("Missing env argument.");
-        return undefined;
-    }
-
-    return projectNameList[0].replace(projectNameLabel, "");
-}
-
-const getTechType = (args) => {
-    const techTypeList = args.filter(arg => arg.includes(techTypeLabel))
-
-    if (techTypeList.length < 1) {
-        console.error("Missing env argument.");
-        return undefined;
-    }
-
-    return techTypeList[0].replace(techTypeLabel, "");
 }
 
 const createProjectsFolder = () => {
@@ -101,23 +80,23 @@ const convertAndCreateEnvFile = (argsObj) => {
 const validateEnvFileIsPresent = (filePath) => {
     const files = fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile());
 
-    if (files.length < 1) {
+    if (isListEmpty(files)) {
         console.log("No env file present.");
         return false;
     }
 
-    return files[0].includes("envs.json");
+    return firstElement(files).includes("envs.json");
 };
 
 const validateTemplateEnvFileIsPresent = (filePath) => {
     const files = fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile());
 
-    if (files.length < 1) {
+    if (isListEmpty(files)) {
         console.log("No template env file present.");
         return false;
     }
 
-    return files[0].includes(templateEnvJson);
+    return firstElement(files).includes(templateEnvJson);
 };
 
 const convertAndCreateRunnerFiles = (argsObj) => {
@@ -139,12 +118,12 @@ const convertAndCreateRunnerFiles = (argsObj) => {
 const validateRunnerFileIsPresent = (filePath, runner) => {
     const files = fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile());
 
-    if (files.length < 1) {
+    if (isListEmpty(files)) {
         console.log("No file present.");
         return false;
     }
 
-    return files[0].includes(runner);
+    return firstElement(files).includes(runner);
 };
 
 module.exports.execute = execute;

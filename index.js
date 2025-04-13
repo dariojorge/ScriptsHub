@@ -1,5 +1,6 @@
 let args = process.argv.slice(2);
-const scriptTypeLabel="scriptType=";
+const { firstElement, getArgValue, isListEmpty } = require("./scripts/utils/utils");
+const scriptTypeLabel="scriptType";
 const scriptPath="./scripts";
 
 const init = () => {
@@ -10,7 +11,11 @@ const init = () => {
 
     extractTextFromArguments();
 
-    const scriptType = getScriptType();
+    const scriptType = getArgValue(args, scriptTypeLabel);
+    if(scriptType===undefined) {
+        process.exit(1);
+    }
+
     const settings = getSettings(scriptType);
     const scriptExecute = require(`${scriptPath}${settings.basePath}${settings.script}`);
 
@@ -47,30 +52,20 @@ const joinAllArguments = () => {
     return allArgsIntoText;
 }
 
-const getScriptType = () => {
-    const argList = args.filter(arg => arg.includes(scriptTypeLabel));
-    if(argList.length < 1) {
-        console.error('Missing argument scriptType');
-        process.exit(1);
-    }
-
-    return argList[0].replace(scriptTypeLabel, "");
-}
-
 const getSettings = (scriptType) => {
     const scriptHubSettings = require('./settings.json');
     const selectedScriptList=scriptHubSettings.types.filter(types => types.type===scriptType);
-    if (selectedScriptList.length < 1) {
+    if (isListEmpty(selectedScriptList.length)) {
         console.error('Missing settings for this script type.');
         process.exit(1);
     }
 
-    return selectedScriptList[0];
+    return firstElement(selectedScriptList);
 }
 
 const removeScriptTypeFromArgs = (scriptType) => {
     const index = args.indexOf(scriptTypeLabel + scriptType);
-    if (index > -1) {
+    if (index >= 0) {
         args.splice(index, 1);
     }
 }
