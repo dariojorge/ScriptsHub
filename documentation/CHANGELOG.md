@@ -7,6 +7,7 @@
 - Feature: Added the file utils to place the most common functionality used for better code readability
 - Feature: Updated the demo-quarkus to showcase the new functionality
 - Feature: Update the scripts to use the new utils file
+- Feature: Update the documentation
 
 ## v0.1.3
 ### Added or Changed

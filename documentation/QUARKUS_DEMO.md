@@ -64,16 +64,20 @@ The quarkus demo was created to show an example of how the process of using the 
 
 ```json
 {
-    "message": "This is a message from the test env setting."
+    "message03": "Why message?",
+    "message02": "When this is a message.",
+    "message01": "This message is a message."
 }
 ```
 
-13. I you want to check another configuration, run the update and choose the `env=custom-message`, to see the changes
+13. I you want to check another configuration, run the update and choose the `env=test-without-message-2-and-3`, to see the changes
     you need to stop and start the project to take the effect of the change.
 14. The result will be:
 
 ```json
 {
-    "message": "This is a custom message."
+    "message01": "This message is a message on forth environment config.",
+    "message03": "Why message on the execute additionalEnvs?",
+    "message02": "When this is a message from demoEnvs.txt."
 }
 ```
