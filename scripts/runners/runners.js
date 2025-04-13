@@ -20,7 +20,6 @@ const buildArgsObj = (argsObj) => {
 const getProjectList = (argsObj) => {
     const projectList = getArgValue(argsObj, projectsLabel);
 
-    console.log(projectList);
     if (projectList === undefined) {
         return getDirectories();
     }

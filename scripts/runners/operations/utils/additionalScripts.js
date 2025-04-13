@@ -80,7 +80,6 @@ const executeAdditionalScript = (argsObj, additionalEnv) => {
         return [];
     }
 
-    console.log(additionalEnv.filePath);
     const scriptExecute = require(additionalEnv.filePath);
     return scriptExecute.execute(argsObj);
 }
