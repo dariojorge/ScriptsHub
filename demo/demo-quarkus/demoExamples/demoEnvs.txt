@@ -1,0 +1,3 @@
+demoMessage01=This message is a message from demoEnvs.txt.
+demoMessage02=When this is a message from demoEnvs.txt.
+demoMessage03=Why message from demoEnvs.txt?

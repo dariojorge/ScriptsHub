@@ -1,6 +1,15 @@
 # Changelog
 
-## v0.1.2
+## v0.1.4
+### Added or Changed
+- Feature: Added in the runner create the possibility to create a .idea folder if the project was not yet opened by intellij
+- Feature: Added the package.json for with an empty workspace as an option in case we need more complex scripts with dependencies
+- Feature: Added the file utils to place the most common functionality used for better code readability
+- Feature: Updated the demo-quarkus to showcase the new functionality
+- Feature: Update the scripts to use the new utils file
+- Feature: Update the documentation
+
+## v0.1.3
 ### Added or Changed
 - Feature: Changed the settings.json to add the name and split the script by basePath and script
 

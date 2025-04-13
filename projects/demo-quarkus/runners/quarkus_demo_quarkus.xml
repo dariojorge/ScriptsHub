@@ -9,7 +9,9 @@
               <option name="delegateBuildToMaven" value="false" />
               <option name="environmentProperties">
                   <map>
-                      <entry key="DEMO_MESSAGE" value="DEMO_MESSAGE" />
+                      <entry key="DEMO_MESSAGE_01" value="DEMO_MESSAGE_01" />
+                      <entry key="DEMO_MESSAGE_02" value="DEMO_MESSAGE_02" />
+                      <entry key="DEMO_MESSAGE_03" value="DEMO_MESSAGE_03" />
                   </map>
               </option>
               <option name="jreName" value="#USE_PROJECT_JDK" />

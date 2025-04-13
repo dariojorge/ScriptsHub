@@ -9,5 +9,32 @@
         }
       ]
     }
-  ]
+  ],
+  "additionalEnvs": [
+    {
+      "type": "read",
+      "filePath": "FILE_PATH",
+      "regexSearch": "{ORIGIN}<REST_OF_REGEX>",
+      "regexReplace": "",
+      "env": []
+    },
+    {
+      "type": "execute",
+      "filePath": "FILE_PATH",
+      "env": []
+    }
+  ],
+  "additionalCmd": [
+    {
+      "type": "arg",
+      "value": "ARG_NAME",
+      "cmd": "CMD"
+    },
+    {
+      "type": "execute",
+      "value": "TRUE_FALSE",
+      "cmd": "CMD"
+    }
+  ],
+  "additionalData": []
 }

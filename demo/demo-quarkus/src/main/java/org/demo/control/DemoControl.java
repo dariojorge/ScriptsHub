@@ -2,17 +2,16 @@ package org.demo.control;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import lombok.RequiredArgsConstructor;
 import org.demo.entity.Demo;
 
+@RequiredArgsConstructor(onConstructor = @__(@Inject))
 @ApplicationScoped
 public class DemoControl {
 
-    @Inject
-    DemoConfigs demoConfigs;
+    private final DemoConfigs demoConfigs;
 
     public Demo demo() {
-        return Demo.builder()
-                .Message(demoConfigs.getMessage())
-                .build();
+        return DemoBuildMessageMapper.buildMessage(demoConfigs);
     }
 }

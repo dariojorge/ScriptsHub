@@ -1,7 +1,8 @@
 const fs = require("fs");
 const execSync = require('child_process').execSync;
-const demoTypeLabel = "demoType=";
-const versionLabel = "version=";
+const { getArgValue } = require("./../../utils/utils");
+const demoTypeLabel = "demoType";
+const versionLabel = "version";
 const demoPath = "./demo/{demoType}";
 const pomLabel = "demo-java-version";
 const baseJavaVersion = 17;
@@ -23,31 +24,18 @@ const execute = (args) => {
 
 const buildArgsObj = (argsObj) => {
     return {
-        demoType: getDemoType(argsObj.args),
+        demoType: getArgValue(argsObj.args, demoTypeLabel),
         version: getVersion(argsObj.args)
     };
 }
 
-getDemoType = (args) => {
-    const demoTypeList = args.filter(arg => arg.includes(demoTypeLabel))
-
-    if (demoTypeList.length < 1) {
-        console.error("Missing env argument.");
-        return undefined;
-    }
-
-    return demoTypeList[0].replace(demoTypeLabel, "");
-}
-
 getVersion = (args) => {
-    const versionList = args.filter(arg => arg.includes(versionLabel))
+    const javaVersion = getArgValue(args, versionLabel);
 
-    if (versionList.length < 1) {
-        console.error("Missing env argument using the default version:" + baseJavaVersion);
+    if (javaVersion === undefined) {
+        console.error("Using the default version:" + baseJavaVersion);
         return baseJavaVersion;
     }
-
-    const javaVersion = versionList[0].replace(versionLabel, "");
 
     if (parseInt(javaVersion) < baseJavaVersion) {
         console.error("The java version has to be 17+");
