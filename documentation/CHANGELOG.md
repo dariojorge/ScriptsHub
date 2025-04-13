@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.5
+### Added or Changed
+- Bugfix: Removing console logs
+
 ## v0.1.4
 ### Added or Changed
 - Feature: Added in the runner create the possibility to create a .idea folder if the project was not yet opened by intellij
