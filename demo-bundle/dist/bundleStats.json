@@ -1,0 +1,670 @@
+{
+  "hash": "a89b23845885c66b095f",
+  "version": "5.99.5",
+  "time": 9087,
+  "builtAt": 1744887531340,
+  "publicPath": "auto",
+  "outputPath": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\dist",
+  "assetsByChunkName": {
+    "main": [
+      "bundle.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "bundle.js",
+      "size": 6435,
+      "emitted": true,
+      "comparedForEmit": false,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "size": 6435
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "related": [],
+      "chunks": [
+        "main"
+      ],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    }
+  ],
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 2457,
+      "sizes": {
+        "javascript": 1787,
+        "runtime": 670
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "bundle.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "7e7aa0198cdf57ab39a0",
+      "childrenByOrder": {},
+      "id": "main",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "modules": [
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 1714,
+          "sizes": {
+            "javascript": 1714
+          },
+          "built": true,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+          "name": "./src/example01/example01.ts",
+          "nameForCondition": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+          "index": 1,
+          "preOrderIndex": 1,
+          "index2": 0,
+          "postOrderIndex": 0,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "dependent": true,
+          "issuer": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "issuerName": "./src/index.ts",
+          "issuerPath": [
+            {
+              "identifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+              "name": "./src/index.ts",
+              "id": "./src/index.ts"
+            }
+          ],
+          "failed": true,
+          "errors": 1,
+          "warnings": 0,
+          "id": "./src/example01/example01.ts",
+          "issuerId": "./src/index.ts",
+          "chunks": [
+            "main"
+          ],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+              "module": "./src/index.ts",
+              "moduleName": "./src/index.ts",
+              "resolvedModuleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+              "resolvedModule": "./src/index.ts",
+              "type": "harmony side effect evaluation",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./example01/example01",
+              "loc": "1:0-50",
+              "moduleId": "./src/index.ts",
+              "resolvedModuleId": "./src/index.ts"
+            },
+            {
+              "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+              "module": "./src/index.ts",
+              "moduleName": "./src/index.ts",
+              "resolvedModuleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+              "resolvedModule": "./src/index.ts",
+              "type": "harmony export imported specifier",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./example01/example01",
+              "loc": "2:0-21",
+              "moduleId": "./src/index.ts",
+              "resolvedModuleId": "./src/index.ts"
+            }
+          ],
+          "usedExports": null,
+          "providedExports": [
+            "Example01"
+          ],
+          "optimizationBailout": [],
+          "depth": 1
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 73,
+          "sizes": {
+            "javascript": 73
+          },
+          "built": true,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "name": "./src/index.ts",
+          "nameForCondition": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "index": 0,
+          "preOrderIndex": 0,
+          "index2": 1,
+          "postOrderIndex": 1,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "issuer": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": "./src/index.ts",
+          "issuerId": null,
+          "chunks": [
+            "main"
+          ],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "resolvedModuleIdentifier": null,
+              "resolvedModule": null,
+              "type": "entry",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./src/index.ts",
+              "loc": "main",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": null,
+          "providedExports": [
+            "Example01"
+          ],
+          "optimizationBailout": [],
+          "depth": 0
+        },
+        {
+          "type": "module",
+          "moduleType": "runtime",
+          "layer": null,
+          "size": 308,
+          "sizes": {
+            "runtime": 308
+          },
+          "built": false,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "webpack/runtime/define property getters",
+          "name": "webpack/runtime/define property getters",
+          "nameForCondition": null,
+          "index": null,
+          "preOrderIndex": null,
+          "index2": null,
+          "postOrderIndex": null,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": "",
+          "chunks": [
+            "main"
+          ],
+          "assets": [],
+          "reasons": [],
+          "usedExports": null,
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": null
+        },
+        {
+          "type": "module",
+          "moduleType": "runtime",
+          "layer": null,
+          "size": 88,
+          "sizes": {
+            "runtime": 88
+          },
+          "built": false,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "webpack/runtime/hasOwnProperty shorthand",
+          "name": "webpack/runtime/hasOwnProperty shorthand",
+          "nameForCondition": null,
+          "index": null,
+          "preOrderIndex": null,
+          "index2": null,
+          "postOrderIndex": null,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": "",
+          "chunks": [
+            "main"
+          ],
+          "assets": [],
+          "reasons": [],
+          "usedExports": null,
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": null
+        },
+        {
+          "type": "module",
+          "moduleType": "runtime",
+          "layer": null,
+          "size": 274,
+          "sizes": {
+            "runtime": 274
+          },
+          "built": false,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "webpack/runtime/make namespace object",
+          "name": "webpack/runtime/make namespace object",
+          "nameForCondition": null,
+          "index": null,
+          "preOrderIndex": null,
+          "index2": null,
+          "postOrderIndex": null,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": "",
+          "chunks": [
+            "main"
+          ],
+          "assets": [],
+          "reasons": [],
+          "usedExports": null,
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": null
+        }
+      ],
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./src/index.ts"
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 73,
+      "sizes": {
+        "javascript": 73
+      },
+      "built": true,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+      "name": "./src/index.ts",
+      "nameForCondition": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+      "index": 0,
+      "preOrderIndex": 0,
+      "index2": 1,
+      "postOrderIndex": 1,
+      "cacheable": true,
+      "optional": false,
+      "orphan": false,
+      "issuer": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": "./src/index.ts",
+      "issuerId": null,
+      "chunks": [
+        "main"
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "resolvedModuleIdentifier": null,
+          "resolvedModule": null,
+          "type": "entry",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./src/index.ts",
+          "loc": "main",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": null,
+      "providedExports": [
+        "Example01"
+      ],
+      "optimizationBailout": [],
+      "depth": 0
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 1714,
+      "sizes": {
+        "javascript": 1714
+      },
+      "built": true,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+      "name": "./src/example01/example01.ts",
+      "nameForCondition": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+      "index": 1,
+      "preOrderIndex": 1,
+      "index2": 0,
+      "postOrderIndex": 0,
+      "cacheable": true,
+      "optional": false,
+      "orphan": false,
+      "issuer": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+      "issuerName": "./src/index.ts",
+      "issuerPath": [
+        {
+          "identifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "name": "./src/index.ts",
+          "id": "./src/index.ts"
+        }
+      ],
+      "failed": true,
+      "errors": 1,
+      "warnings": 0,
+      "id": "./src/example01/example01.ts",
+      "issuerId": "./src/index.ts",
+      "chunks": [
+        "main"
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "module": "./src/index.ts",
+          "moduleName": "./src/index.ts",
+          "resolvedModuleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "resolvedModule": "./src/index.ts",
+          "type": "harmony side effect evaluation",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./example01/example01",
+          "loc": "1:0-50",
+          "moduleId": "./src/index.ts",
+          "resolvedModuleId": "./src/index.ts"
+        },
+        {
+          "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "module": "./src/index.ts",
+          "moduleName": "./src/index.ts",
+          "resolvedModuleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "resolvedModule": "./src/index.ts",
+          "type": "harmony export imported specifier",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./example01/example01",
+          "loc": "2:0-21",
+          "moduleId": "./src/index.ts",
+          "resolvedModuleId": "./src/index.ts"
+        }
+      ],
+      "usedExports": null,
+      "providedExports": [
+        "Example01"
+      ],
+      "optimizationBailout": [],
+      "depth": 1
+    },
+    {
+      "type": "module",
+      "moduleType": "runtime",
+      "layer": null,
+      "size": 308,
+      "sizes": {
+        "runtime": 308
+      },
+      "built": false,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "webpack/runtime/define property getters",
+      "name": "webpack/runtime/define property getters",
+      "nameForCondition": null,
+      "index": null,
+      "preOrderIndex": null,
+      "index2": null,
+      "postOrderIndex": null,
+      "optional": false,
+      "orphan": false,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": "",
+      "chunks": [
+        "main"
+      ],
+      "assets": [],
+      "reasons": [],
+      "usedExports": null,
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": null
+    },
+    {
+      "type": "module",
+      "moduleType": "runtime",
+      "layer": null,
+      "size": 88,
+      "sizes": {
+        "runtime": 88
+      },
+      "built": false,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "webpack/runtime/hasOwnProperty shorthand",
+      "name": "webpack/runtime/hasOwnProperty shorthand",
+      "nameForCondition": null,
+      "index": null,
+      "preOrderIndex": null,
+      "index2": null,
+      "postOrderIndex": null,
+      "optional": false,
+      "orphan": false,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": "",
+      "chunks": [
+        "main"
+      ],
+      "assets": [],
+      "reasons": [],
+      "usedExports": null,
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": null
+    },
+    {
+      "type": "module",
+      "moduleType": "runtime",
+      "layer": null,
+      "size": 274,
+      "sizes": {
+        "runtime": 274
+      },
+      "built": false,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "webpack/runtime/make namespace object",
+      "name": "webpack/runtime/make namespace object",
+      "nameForCondition": null,
+      "index": null,
+      "preOrderIndex": null,
+      "index2": null,
+      "postOrderIndex": null,
+      "optional": false,
+      "orphan": false,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": "",
+      "chunks": [
+        "main"
+      ],
+      "assets": [],
+      "reasons": [],
+      "usedExports": null,
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": null
+    }
+  ],
+  "entrypoints": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 6435
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 6435,
+      "auxiliaryAssets": [],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {},
+      "isOverSizeLimit": false
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 6435
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 6435,
+      "auxiliaryAssets": [],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {},
+      "isOverSizeLimit": false
+    }
+  },
+  "errors": [
+    {
+      "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+      "moduleName": "./src/example01/example01.ts",
+      "loc": "1:0-41",
+      "message": "Module not found: Error: Can't resolve 'style-loader' in 'C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle'",
+      "moduleId": "./src/example01/example01.ts",
+      "moduleTrace": [
+        {
+          "originIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "originName": "./src/index.ts",
+          "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+          "moduleName": "./src/example01/example01.ts",
+          "dependencies": [
+            {
+              "loc": "1:0-50"
+            },
+            {
+              "loc": "2:0-21"
+            }
+          ],
+          "originId": "./src/index.ts",
+          "moduleId": "./src/example01/example01.ts"
+        }
+      ],
+      "details": "resolve 'style-loader' in 'C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle'\n  Parsed request is a module\n  using description file: C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\package.json (relative path: .)\n    resolve as module\n      looking for modules in C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\n        single file module\n          using description file: C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\package.json (relative path: ./node_modules/style-loader)\n            no extension\n              C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\style-loader doesn't exist\n            .js\n              C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\style-loader.js doesn't exist\n        C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\style-loader doesn't exist\n      C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\node_modules doesn't exist or is not a directory\n      looking for modules in C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\node_modules\n        single file module\n          using description file: C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\package.json (relative path: ./node_modules/style-loader)\n            no extension\n              C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\node_modules\\style-loader doesn't exist\n            .js\n              C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\node_modules\\style-loader.js doesn't exist\n        C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\node_modules\\style-loader doesn't exist\n      C:\\Users\\ctw00746\\Documents\\Confi\\node_modules doesn't exist or is not a directory\n      C:\\Users\\ctw00746\\Documents\\node_modules doesn't exist or is not a directory\n      C:\\Users\\ctw00746\\node_modules doesn't exist or is not a directory\n      C:\\Users\\node_modules doesn't exist or is not a directory\n      C:\\node_modules doesn't exist or is not a directory",
+      "stack": "ModuleNotFoundError: Module not found: Error: Can't resolve 'style-loader' in 'C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle'\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\Compilation.js:2230:28\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\NormalModuleFactory.js:928:13\n    at eval (eval at create (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:10:1)\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\NormalModuleFactory.js:338:22\n    at eval (eval at create (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\NormalModuleFactory.js:651:15\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\NormalModuleFactory.js:155:10\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\NormalModuleFactory.js:727:8\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\neo-async\\async.js:2830:7\n    at done (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\neo-async\\async.js:2925:13)"
+    },
+    {
+      "file": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+      "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+      "moduleName": "./src/example01/example01.ts",
+      "loc": "2:22-40",
+      "message": "[tsl] ERROR in C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts(2,23)\r\n      TS2307: Cannot find module './example01.scss' or its corresponding type declarations.",
+      "moduleId": "./src/example01/example01.ts",
+      "moduleTrace": [
+        {
+          "originIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\index.ts",
+          "originName": "./src/index.ts",
+          "moduleIdentifier": "C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\index.js!C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts",
+          "moduleName": "./src/example01/example01.ts",
+          "dependencies": [
+            {
+              "loc": "1:0-50"
+            },
+            {
+              "loc": "2:0-21"
+            }
+          ],
+          "originId": "./src/index.ts",
+          "moduleId": "./src/example01/example01.ts"
+        }
+      ],
+      "details": "ts-loader-default_e3b0c44298fc1c14",
+      "stack": "Error: [tsl] ERROR in C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\src\\example01\\example01.ts(2,23)\r\n      TS2307: Cannot find module './example01.scss' or its corresponding type declarations.\n    at makeError (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\utils.js:105:19)\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\utils.js:77:27\n    at Array.map (<anonymous>)\n    at formatErrors (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\utils.js:60:14)\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\after-compile.js:152:66\n    at Array.forEach (<anonymous>)\n    at provideErrorsToWebpack (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\after-compile.js:149:31)\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\after-compile.js:36:9\n    at C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\ts-loader\\dist\\instances.js:214:13\n    at fn (C:\\Users\\ctw00746\\Documents\\Confi\\ScriptsHub\\demo\\demo-bundle\\node_modules\\webpack\\lib\\Compilation.js:548:10)"
+    }
+  ],
+  "errorsCount": 2,
+  "warnings": [],
+  "warningsCount": 0,
+  "children": []
+}
