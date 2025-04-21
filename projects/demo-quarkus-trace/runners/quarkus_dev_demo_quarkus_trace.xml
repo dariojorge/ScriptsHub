@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="[QUARKUS-DEV] Demo Quarkus Trace" type="QuarkusRunConfiguration" factoryName="QuarkusRunConfiguration">
+        <option name="env">
+            <map>
+                <entry key="SERVER_PORT" value="8081" />
+            </map>
+        </option>
+        <module name="demo-quarkus-trace" />
+        <option name="profile" />
+        <method v="2" />
+    </configuration>
+</component>

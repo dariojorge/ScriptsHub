@@ -35,6 +35,12 @@
       "type": "demo",
       "basePath": "/demo/",
       "script": "demo.js"
+    },
+    {
+      "name": "trace",
+      "type": "trace",
+      "basePath": "/trace/",
+      "script": "trace.js"
     }
   ]
 }

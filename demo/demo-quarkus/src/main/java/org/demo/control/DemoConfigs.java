@@ -1,17 +1,20 @@
 package org.demo.control;
 
-import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.Startup;
-import lombok.Getter;
+import lombok.Data;
+import lombok.extern.java.Log;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Level;
 
-@Getter
 @ApplicationScoped
+@Data
+@Log
 public class DemoConfigs {
 
     public static final String DEMO_MESSAGE_01_LABEL = "demo.message01";
@@ -34,9 +37,7 @@ public class DemoConfigs {
         config.put(DEMO_MESSAGE_02_LABEL, message02);
         config.put(DEMO_MESSAGE_03_LABEL, message03);
 
-        Log.info("=== Startup configuration ===");
-        config.forEach((key, value) -> {
-            Log.infof("%s=%s", key, value);
-        });
+        LOGGER.log(Level.INFO, "=== Startup Demo configuration ===");
+        config.forEach((key, value) -> LOGGER.log(Level.INFO, "{0}={1}", List.of(key, value)));
     }
 }

@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const firstElement = (list) => list.length > 0 ? list[0] : null;
-const isListEmpty = (list) => !list || list.length <= 0 ? true : false;
+const isListEmpty = (list) => !list || list.length <= 0;
 
 module.exports.firstElement = firstElement;
 module.exports.isListEmpty = isListEmpty;

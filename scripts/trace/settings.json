@@ -1,0 +1,10 @@
+{
+  "types": [
+    {
+      "name": "collector-jaeger",
+      "type": "collector-jaeger",
+      "basePath": "./operations/",
+      "script": "collector-jaeger.js"
+    }
+  ]
+}

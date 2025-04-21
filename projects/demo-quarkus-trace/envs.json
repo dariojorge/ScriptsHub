@@ -1,0 +1,11 @@
+{
+  "envs": [
+    {
+      "type": "test",
+      "env": []
+    }
+  ],
+  "additionalEnvs": [],
+  "additionalCmd": [],
+  "additionalData": []
+}

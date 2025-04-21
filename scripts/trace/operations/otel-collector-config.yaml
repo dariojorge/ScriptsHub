@@ -1,0 +1,41 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+# processors - configure how data is processed and filtered before exporting.
+processors:
+  batch/jaeger:
+    send_batch_size: 1000
+    send_batch_max_size: 1200
+    timeout: 5s
+  filter/filter_client_request_data_spans:
+    spans:
+      exclude:
+        match_type: regexp
+        span_names:
+          - ^.* Client Request Data$
+# exporters configure how to send processed data to one or more backends.
+exporters:
+  debug:
+    verbosity: detailed
+  otlphttp/jaeger:
+    endpoint: http://jaeger:4318/v1/traces
+    compression: none
+    tls:
+      insecure: true
+  otlp/jaeger:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+
+# receivers, processors, and exporters that are not used in pipelines are silently ignored.
+service:
+  pipelines:
+    traces/jaeger:
+      receivers: [ otlp ]
+      processors: [ batch/jaeger, filter/filter_client_request_data_spans ]
+      exporters: [ debug, otlp/jaeger ]
