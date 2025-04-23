@@ -7,7 +7,6 @@ $padding: 20px;
 $transition-speed: 0.3s;
 $font-family: 'Arial', sans-serif;
 
-// Card container
 .card {
   background-color: $card-bg-color;
   border: 1px solid $card-border-color;
@@ -17,13 +16,11 @@ $font-family: 'Arial', sans-serif;
   font-family: $font-family;
   transition: box-shadow $transition-speed, transform $transition-speed;
 
-  // Card hover effect
   &:hover {
     box-shadow: 0 8px 16px $card-hover-shadow-color;
-    transform: translateY(-5px); // slight lift effect on hover
+    transform: translateY(-5px);
   }
 
-  // Card title (optional)
   .card-title {
     font-size: 1.5rem;
     font-weight: bold;
@@ -31,7 +28,6 @@ $font-family: 'Arial', sans-serif;
     color: #333;
   }
 
-  // Card body (content area)
   .card-body {
     font-size: 1rem;
     color: #666;
@@ -39,7 +35,6 @@ $font-family: 'Arial', sans-serif;
     margin-bottom: 15px;
   }
 
-  // Card footer (optional)
   .card-footer {
     text-align: right;
     font-size: 0.9rem;
