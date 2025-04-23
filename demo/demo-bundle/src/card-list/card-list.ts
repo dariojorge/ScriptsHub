@@ -16,49 +16,31 @@ export class CardList extends HTMLElement {
   }
 
   renderTemplate = (): HTMLDivElement => {
-
-    //let templateWrapper = document.createElement('div');
-    //templateWrapper.innerHTML = htmlContent;
     const htmlDivElem = this.stringToDivElement(htmlContent);
-
-    //const cardListContainer = document.getElementById('card-list');
     this.cards.forEach(card => {
-      //const newCard = new Card(card);
-      const cardEl = this.createCard(card);//document.createElement('custom-card');
-      console.log('custom-card-' + card.id);
-      //console.log(this.createCard(card));
-      defineCustomElement('custom-card', Card);
-      /*cardEl.classList.add('card');
-      this.setDataToElem('.card-title', this.data.title, cardEl);
-      this.setDataToElem('.card-body', this.data.body, cardEl);
-      this.setDataToElem('.card-footer', this.data.footer, cardEl);*/
+      const cardName = 'custom-card-' + card.id;
+      const cardEl = this.createCard(card, cardName);
+      defineCustomElement(cardName, class extends Card { });
       htmlDivElem!.appendChild(cardEl);
     });
-    
+
     return htmlDivElem;
   };
 
-  createCard = (card: TemplateData): HTMLElement => {
-    const customCard = document.createElement('custom-card') as Card;
-    //customCard.renderTemplate(card);
-    console.log(customCard.title);
-    // = card.title;
-    customCard.body = card.body;
-    customCard.footer = card.footer;
+  createCard = (card: TemplateData, cardElemName: string): HTMLElement => {
+    const customCard = document.createElement(cardElemName) as Card;
+    customCard.setAttribute("title", card.title);
+    customCard.setAttribute("body", card.body);
+    customCard.setAttribute("footer", card.footer);
     return customCard;
-  }
-
-  setDataToElem = (elem: string, data: string, templateWrapper: HTMLDivElement): void => {
-    const el = templateWrapper.querySelector(elem);
-    if (el) el.textContent = data;
   }
 
   stringToDivElement = (htmlString: string) => {
     const template = document.createElement('template');
     template.innerHTML = htmlString.trim();
-  
+
     const element = template.content.firstElementChild;
-  
+
     if (element instanceof HTMLDivElement) {
       return element;
     } else {

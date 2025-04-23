@@ -5,6 +5,12 @@
       "type": "quarkus",
       "basePath": "./operations/",
       "script": "quarkus.js"
+    },
+    {
+      "name": "bundle",
+      "type": "bundle",
+      "basePath": "./operations/",
+      "script": "bundle.js"
     }
   ]
 }
