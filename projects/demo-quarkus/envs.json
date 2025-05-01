@@ -91,6 +91,11 @@
       "type": "execute",
       "value": "true",
       "cmd": "ls ../demo-quarkus/demoExamples"
+    },
+    {
+      "type": "arg",
+      "value": "openIntellij",
+      "cmd": "node scripts/utils/openIntellij.js project=demo-quarkus"
     }
   ],
   "additionalData": [

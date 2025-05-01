@@ -6,6 +6,12 @@
     }
   ],
   "additionalEnvs": [],
-  "additionalCmd": [],
+  "additionalCmd": [
+    {
+      "type": "arg",
+      "value": "openIntellij",
+      "cmd": "node scripts/utils/openIntellij.js project=demo-quarkus-trace"
+    }
+  ],
   "additionalData": []
 }
