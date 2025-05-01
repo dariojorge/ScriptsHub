@@ -61,11 +61,15 @@ const executeAdditionalScripts = (argsObj) => {
     }
 
     const envData = argsObj.envData;
-    const envList = envData.envs.env;
+    const envList = envData.envs?.env;
     return addOrReplaceEnvironmentVariables(envList, envVarsList);
 }
 
-const addOrReplaceEnvironmentVariables = (envList, envVarsList) => {
+const addOrReplaceEnvironmentVariables = (envList = [], envVarsList) => {
+    if(isListEmpty(envVarsList)) {
+        return envList;
+    }
+
     return envVarsList.map(env => {
         const elem = getElementByKey(envList, env.key);
         if (!isBlank(elem)) {
@@ -96,7 +100,7 @@ const getEnvData = (argsObj) => {
 }
 
 const filterAdditionalEnvs = (additionalEnvs, envs) => {
-    if (!additionalEnvs) {
+    if (!additionalEnvs || !envs) {
         return [];
     }
 
