@@ -1,5 +1,6 @@
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const bundleName = "bundle";
 
@@ -14,13 +15,26 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: true,
+                        },
+                    },
+                    'sass-loader'
+                ],
                 exclude: /node_modules/
             },
             {
                 test: /\.html$/,
                 use: ['html-loader']
-              }
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            }
         ],
     },
     resolve: {
@@ -32,6 +46,7 @@ module.exports = {
     output: {
         filename: `${bundleName}.js`,
         path: path.resolve(__dirname, 'dist'),
+        assetModuleFilename: 'images/[hash][ext][query]'
     },
     mode: 'development',
     devtool: 'source-map',
@@ -40,6 +55,7 @@ module.exports = {
             analyzerMode: "disabled",
             generateStatsFile: true,
             statsFilename: `${bundleName}Stats.json`
-        })
+        }),
+        new CleanWebpackPlugin()
     ]
 };

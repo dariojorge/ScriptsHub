@@ -27,4 +27,5 @@ module.exports.getFiles = (path) => {
     return fs.readdirSync(path).filter(file => fs.statSync(path + '/' + file).isFile());
 };
 module.exports.getElementByType = (list, elementName) => isListEmpty(list) ? undefined : firstElement(list.filter(element => element.type === elementName));
+module.exports.getElementByKey = (list, elementName) => isListEmpty(list) ? undefined : firstElement(list.filter(element => element.key === elementName));
 module.exports.isBlank = (value) => (!value || /^\s*$/.test(value));

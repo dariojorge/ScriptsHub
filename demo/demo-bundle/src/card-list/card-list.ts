@@ -3,13 +3,11 @@ import './card-list.scss';
 import { Card } from '../card/card';
 import { defineCustomElement } from '../utils/DefineCustomElement';
 import { convertStringToHtmlDivElement } from '../utils/Utils';
+import {cardDataModel} from './Card-list-structure'
+import { Image } from '../image/image';
 
 export class CardList extends HTMLElement {
-  private cards: TemplateData[] = [
-    { id: 0, title: 'Card 1', body: 'This is the first card.', footer: "This is the footer" },
-    { id: 1, title: 'Card 2', body: 'Second card details go here.', footer: "This is the footer" },
-    { id: 2, title: 'Card 3', body: 'Another description goes here.', footer: "This is the footer" },
-  ];
+  private cards: TemplateData[] = cardDataModel;
 
   private customStyle: string = `
   .card {
@@ -53,6 +51,7 @@ export class CardList extends HTMLElement {
   constructor() {
     super();
     this.appendChild(this.renderTemplate());
+    defineCustomElement('custom-image', Image);
   }
 
   renderTemplate = (): HTMLDivElement => {
@@ -76,7 +75,7 @@ export class CardList extends HTMLElement {
     const style = document.createElement("style");
     style.innerHTML = this.customStyle;
     document.head.appendChild(style);
-    
+
     return customCard;
   }
 }

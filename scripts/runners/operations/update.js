@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { firstElement, getArgValue, getFiles, isListEmpty } = require("../../utils/utils");
+const {firstElement, getArgValue, getFiles, isListEmpty, getElementByKey, isBlank} = require("../../utils/utils");
 const runConfigurationsPath = "../{project}/.idea/runConfigurations/";
 const runConfigurationsPathWithFile = "../{project}/.idea/runConfigurations/{file}";
 const projectsPath = "../../../projects/{project}/{envJson}";
@@ -20,7 +20,7 @@ const execute = (args) => {
     }
 
     executeAdditionalCmd(argsObj);
-    executeAdditionalScripts(argsObj);
+    argsObj.finalList = executeAdditionalScripts(argsObj);
 
     const runnerList = getFiles(runConfigurationsPath.replace("{project}", argsObj.project));
     if (runnerList === undefined) {
@@ -62,9 +62,17 @@ const executeAdditionalScripts = (argsObj) => {
 
     const envData = argsObj.envData;
     const envList = envData.envs.env;
-    envList.push(...envVarsList);
+    return addOrReplaceEnvironmentVariables(envList, envVarsList);
+}
 
-    return envVarsList;
+const addOrReplaceEnvironmentVariables = (envList, envVarsList) => {
+    return envVarsList.map(env => {
+        const elem = getElementByKey(envList, env.key);
+        if (!isBlank(elem)) {
+            return elem;
+        }
+        return env;
+    });
 }
 
 const getReplace = (type) => type === "update";
@@ -114,8 +122,7 @@ const getEnvFile = (project) => require(projectsPath.replace("{project}", projec
 
 const getXmlAndReplace = (file, argsObj) => {
     const filePath = runConfigurationsPathWithFile.replace("{project}", argsObj.project).replace("{file}", file);
-    const envData = argsObj.envData;
-    const envList = envData.envs.env;
+    const envList = argsObj.finalList;
 
     let fileData = fs.readFileSync(filePath, options);
 

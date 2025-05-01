@@ -18,6 +18,7 @@ const execute = (args) => {
 
 const buildArgsObj = (argsObj) => {
     return {
+        envs: argsObj.envData.envs,
         additionalEnvs: argsObj.envData.additionalEnvs,
         additionalData: argsObj.envData.additionalData,
         selectedAdditionalEnv: argsObj.selectedAdditionalEnv,
