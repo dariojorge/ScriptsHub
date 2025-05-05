@@ -2,6 +2,7 @@ $primary-color: #ecf0f1;
 $text-color: #333;
 
 .body {
+    min-height: 90vh;
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     color: $text-color;

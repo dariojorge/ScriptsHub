@@ -9,21 +9,23 @@ export class Image extends HTMLElement {
         super();
         this.appendChild(this.renderTemplate());
         defineCustomElement('custom-button', Button);
-        const myEl = Button;
-        myEl.buttonCustomFunction = () => {
-            this.changeElemDisplay("image1");
-            this.changeElemDisplay("image2");
+        const imageChange = document.getElementById('imageChange') as HTMLElement;
+        Button.buttonCustomFunction = () => {
+            this.changeElemDisplay("image1", imageChange, "Change to png");
+            this.changeElemDisplay("image2", imageChange, "Change to svg");
         }
 
     }
 
-    changeElemDisplay = (elem: string) => {
+    changeElemDisplay = (elem: string, buttonElem: HTMLElement, message: string) => {
         const div = this.getHtmlElement(document.getElementsByClassName(elem));
         if (!div) {
             return;
         }
 
         if (getComputedStyle(div).display.includes("none")) {
+            buttonElem.setAttribute("message", message);
+
             div.classList.add('is-visible');
             div.classList.remove('is-hidden');
             return;

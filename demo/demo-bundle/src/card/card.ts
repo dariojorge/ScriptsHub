@@ -2,8 +2,6 @@ import htmlContent from './card.html';
 import { convertStringToHtmlDivElement, replaceStringFromList } from '../utils/Utils';
 import './card.scss';
 
-
-
 export class Card extends HTMLElement {
   static get observedAttributes() { return ["title", "body", "footer"]; };
 

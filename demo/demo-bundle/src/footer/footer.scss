@@ -1,9 +1,14 @@
 $primary-color: #6200ee;
 
 .footer {
-  background-color: $primary-color;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
+    position: absolute;
+    left: 0;
+    width: -webkit-fill-available;
+    margin: 0 8px 8px 8px;
+
+
+    background-color: $primary-color;
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
 }

@@ -7,25 +7,25 @@ $padding: 10px 20px;
 $font-size: 1rem;
 
 #button {
-  background-color: $primary-color;
-  color: white;
-  border: none;
-  border-radius: $border-radius;
-  padding: $padding;
-  font-size: $font-size;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    padding: $padding;
+    font-size: $font-size;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
 
-  &:hover {
-    background-color: $hover-color;
-  }
+    &:hover {
+        background-color: $hover-color;
+    }
 
-  &:active {
-    transform: scale($active-scale);
-  }
+    &:active {
+        transform: scale($active-scale);
+    }
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px $focus-color;
-  }
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px $focus-color;
+    }
 }
