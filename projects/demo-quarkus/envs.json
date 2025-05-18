@@ -2,7 +2,7 @@
   "envs": [
     {
       "type": "test",
-      "env": [
+      "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
           "value": "This message is a message."
@@ -19,7 +19,7 @@
     },
     {
       "type": "test-without-message-2",
-      "env": [
+      "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
           "value": "This message is a message on second environment config."
@@ -32,7 +32,7 @@
     },
     {
       "type": "test-without-message-3",
-      "env": [
+      "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
           "value": "This message is a message on third environment config."
@@ -45,7 +45,7 @@
     },
     {
       "type": "test-without-message-2-and-3",
-      "env": [
+      "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
           "value": "This message is a message on forth environment config."
@@ -53,13 +53,14 @@
       ]
     }
   ],
-  "additionalEnvs": [
+  "additionalScripts": [
     {
-      "type": "read",
+      "name": "readEnvScript",
       "filePath": "../demo-quarkus/demoExamples/demoEnvs.txt",
+      "script": "../utils/readEnvScript.js",
       "regexSearch": "{ORIGIN}=.*",
       "regexReplace": ".*=",
-      "env": [
+      "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
           "origin": "demoMessage01"
@@ -71,9 +72,9 @@
       ]
     },
     {
-      "type": "execute",
-      "filePath": "../../../utils/additionalEnvSpecific.js",
-      "env": [
+      "name": "envSpecifics",
+      "script": "../utils/additionalEnvSpecific.js",
+      "envVars": [
         {
           "key": "DEMO_MESSAGE_03",
           "value": "Why message on the execute additionalEnvs?"

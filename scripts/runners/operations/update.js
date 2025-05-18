@@ -53,25 +53,24 @@ const executeAdditionalCmd = (argsObj) => {
 
 const executeAdditionalScripts = (argsObj) => {
     let envVarsList = [];
-
-    const additionalScripts = argsObj.envData.additionalEnvs;
+    const additionalScripts = argsObj.envData.additionalScripts;
     if (!isListEmpty(additionalScripts)) {
         const scriptExecute = require(additionalScriptsPath);
         envVarsList = scriptExecute.execute(argsObj);
     }
 
     const envData = argsObj.envData;
-    const envList = envData.envs?.env;
-    return addOrReplaceEnvironmentVariables(envList, envVarsList);
+    const envVars = envData.envs?.envVars;
+    return addOrReplaceEnvironmentVariables(envVars, envVarsList);
 }
 
-const addOrReplaceEnvironmentVariables = (envList = [], envVarsList) => {
+const addOrReplaceEnvironmentVariables = (envVars = [], envVarsList) => {
     if(isListEmpty(envVarsList)) {
-        return envList;
+        return envVars;
     }
 
     return envVarsList.map(env => {
-        const elem = getElementByKey(envList, env.key);
+        const elem = getElementByKey(envVars, env.key);
         if (!isBlank(elem)) {
             return elem;
         }
@@ -93,33 +92,27 @@ const getEnvData = (argsObj) => {
     const envs = firstElement(envFile.envs.filter(env => env.type === envSelected));
     return {
         envs: envs,
-        additionalEnvs: filterAdditionalEnvs(envFile.additionalEnvs, envs),
+        additionalScripts: filterAdditionalScripts(envFile.additionalScripts, envs),
         additionalCmd: envFile.additionalCmd,
         additionalData: envFile.additionalData
     }
 }
 
-const filterAdditionalEnvs = (additionalEnvs, envs) => {
-    if (!additionalEnvs || !envs) {
+const filterAdditionalScripts = (additionalScripts, envs) => {
+    if (!additionalScripts || !envs) {
         return [];
     }
 
-    additionalEnvs = additionalEnvs.map(additionalEnv => {
-        return {
-            type: additionalEnv.type,
-            filePath: additionalEnv.filePath,
-            regexSearch: additionalEnv.regexSearch,
-            regexReplace: additionalEnv.regexReplace,
-            env: filterEnv(additionalEnv, envs)
-        };
+    additionalScripts = additionalScripts.map(additionalScript => {
+        additionalScript.envVars = filterEnv(additionalScript, envs);
+        return additionalScript;
     });
-
-    return additionalEnvs;
+    return additionalScripts;
 }
 
 
-const filterEnv = (additionalEnv, envs) => {
-    return additionalEnv.env.filter(additionalEnv => !envs.env.find(env => env.key === additionalEnv.key));
+const filterEnv = (additionalScript, envs) => {
+    return additionalScript.envVars.filter(additionalScriptEnvVar => !envs.envVars.find(envVar => envVar.key === additionalScriptEnvVar.key));
 };
 
 const getEnvFile = (project) => require(projectsPath.replace("{project}", project).replace("{envJson}", envJsonPath));

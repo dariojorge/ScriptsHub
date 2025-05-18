@@ -29,3 +29,4 @@ module.exports.getFiles = (path) => {
 module.exports.getElementByType = (list, elementName) => isListEmpty(list) ? undefined : firstElement(list.filter(element => element.type === elementName));
 module.exports.getElementByKey = (list, elementName) => isListEmpty(list) ? undefined : firstElement(list.filter(element => element.key === elementName));
 module.exports.isBlank = (value) => (!value || /^\s*$/.test(value));
+module.exports.getFilteredElement = (list, filter) => firstElement(list.filter(filter));

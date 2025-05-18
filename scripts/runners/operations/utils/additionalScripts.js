@@ -1,16 +1,11 @@
-const { execSync } = require("child_process");
-const { firstElement, isListEmpty } = require("../../../utils/utils");
-const TYPE = {
-    EXECUTE: 'EXECUTE',
-    READ: 'READ'
-};
+const { isListEmpty } = require("../../../utils/utils");
 
 const execute = (args) => {
     const argsObj = buildArgsObj(args);
 
     const envVarsList = [];
-    argsObj.additionalEnvs.forEach(scripts => {
-        processScripts(scripts, argsObj, envVarsList);
+    argsObj.additionalScripts.forEach(additionalScript => {
+        processScripts(additionalScript, argsObj, envVarsList);
     });
 
     return envVarsList;
@@ -19,69 +14,26 @@ const execute = (args) => {
 const buildArgsObj = (argsObj) => {
     return {
         envs: argsObj.envData.envs,
-        additionalEnvs: argsObj.envData.additionalEnvs,
+        additionalScripts: argsObj.envData.additionalScripts,
         additionalData: argsObj.envData.additionalData,
-        selectedAdditionalEnv: argsObj.selectedAdditionalEnv,
         envSelected: argsObj.envSelected
     };
 }
 
-const processScripts = (additionalEnv, argsObj, envVarsList) => {
-    switch (additionalEnv.type.toUpperCase()) {
-        case TYPE.READ:
-            const readList = readAdditionalScript(additionalEnv);
-            if (isListEmpty(readList)) {
-                break;
-            }
-            envVarsList.push(...readList);
-            break;
-        case TYPE.EXECUTE:
-            argsObj.selectedAdditionalEnv = additionalEnv.type;
-            const executeList = executeAdditionalScript(argsObj, additionalEnv);
-
-            if (isListEmpty(executeList)) {
-                break;
-            }
-
-            envVarsList.push(...executeList);
-            break;
-        default:
-            console.error(`Execute type: ${additionalEnv.type} is not configured.`);
+const processScripts = (additionalScript, argsObj, envVarsList) => {
+    const executeList = executeAdditionalScript(argsObj, additionalScript);
+    if (isListEmpty(executeList)) {
+        return;
     }
+    envVarsList.push(...executeList);
 }
 
-const readAdditionalScript = (additionalEnv) => {
-    if (isListEmpty(additionalEnv.env)) {
+const executeAdditionalScript = (argsObj, additionalScript) => {
+    if (isListEmpty(additionalScript.envVars)) {
         return [];
     }
 
-    const filePath = additionalEnv.filePath;
-    const env = additionalEnv.env;
-    const envVarsList = [];
-    const filerData = execSync("cat " + filePath);
-
-    env.forEach(envObj => {
-        const regexSearch = additionalEnv.regexSearch.replace("{ORIGIN}", envObj.origin);
-        const regexReplace = additionalEnv.regexReplace.replace("{ORIGIN}", envObj.origin);
-        const replaceFrom = new RegExp(regexSearch, 'gi');
-        const cleanFrom = new RegExp(regexReplace, 'gi');
-
-        const envVarObj = {
-            key: envObj.key,
-            value: firstElement(filerData.toString("utf8").match(replaceFrom)).replace(cleanFrom, "")
-        };
-        envVarsList.push(envVarObj);
-    });
-
-    return envVarsList;
-}
-
-const executeAdditionalScript = (argsObj, additionalEnv) => {
-    if (isListEmpty(additionalEnv.env)) {
-        return [];
-    }
-
-    const scriptExecute = require(additionalEnv.filePath);
+    const scriptExecute = require(additionalScript.script);
     return scriptExecute.execute(argsObj);
 }
 
