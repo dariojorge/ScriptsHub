@@ -1,5 +1,5 @@
 const fs = require("fs");
-const {firstElement, getArgValue, getFiles, isListEmpty, getElementByKey, isBlank} = require("../../utils/utils");
+const { firstElement, getArgValue, getFiles, isListEmpty, getElementByKey, isBlank, log, error, getOptions, getRegex, isEmpty } = require("../../utils/utils");
 const runConfigurationsPath = "../{project}/.idea/runConfigurations/";
 const runConfigurationsPathWithFile = "../{project}/.idea/runConfigurations/{file}";
 const projectsPath = "../../../projects/{project}/{envJson}";
@@ -8,23 +8,18 @@ const envJsonPath = "envs.json";
 const additionalCmdPath = "./utils/additionalCmd";
 const additionalScriptsPath = "./utils/additionalScripts";
 
-const options = {
-    encoding: "utf8"
-};
-
 const execute = (args) => {
-    console.log('Starting process for the project: ' + args.project);
+    log('Starting process for the project: ' + args.project);
     const argsObj = buildArgsObj(args);
-    if (argsObj.envData === undefined) {
+    if (isEmpty(argsObj.envData)) {
         return;
     }
 
     executeAdditionalCmd(argsObj);
     argsObj.finalList = executeAdditionalScripts(argsObj);
-
     const runnerList = getFiles(runConfigurationsPath.replace("{project}", argsObj.project));
-    if (runnerList === undefined) {
-        console.error("Missing Runner list from project: " + argsObj.project);
+    if (isListEmpty(runnerList)) {
+        error("Missing Runner list from project: " + argsObj.project);
         return;
     }
 
@@ -58,23 +53,23 @@ const executeAdditionalScripts = (argsObj) => {
         const scriptExecute = require(additionalScriptsPath);
         envVarsList = scriptExecute.execute(argsObj);
     }
-
     const envData = argsObj.envData;
     const envVars = envData.envs?.envVars;
     return addOrReplaceEnvironmentVariables(envVars, envVarsList);
 }
 
 const addOrReplaceEnvironmentVariables = (envVars = [], envVarsList) => {
-    if(isListEmpty(envVarsList)) {
+    if (isListEmpty(envVarsList)) {
         return envVars;
     }
 
-    return envVarsList.map(env => {
+    return [...envVars, ...envVarsList].filter(env => {
         const elem = getElementByKey(envVars, env.key);
-        if (!isBlank(elem)) {
-            return elem;
+        if (!isBlank(elem) && elem.value !== env.value) {
+            return false;
         }
-        return env;
+
+        return true;
     });
 }
 
@@ -85,7 +80,7 @@ const getEnvData = (argsObj) => {
     const envFile = getEnvFile(argsObj.project);
 
     if (isListEmpty(envFile.envs)) {
-        console.error("Missing or empty envs.json");
+        error("Missing or empty envs.json");
         return undefined;
     }
 
@@ -120,21 +115,20 @@ const getEnvFile = (project) => require(projectsPath.replace("{project}", projec
 const getXmlAndReplace = (file, argsObj) => {
     const filePath = runConfigurationsPathWithFile.replace("{project}", argsObj.project).replace("{file}", file);
     const envList = argsObj.finalList;
-
-    let fileData = fs.readFileSync(filePath, options);
+    let fileData = fs.readFileSync(filePath, getOptions);
 
     envList.forEach(env => {
         if (!fileData.includes(env.key)) {
             return;
         }
 
-        const replaceFrom = new RegExp(`=\"${env.key}\" value=\".*\"`, 'gi');
-        const replaceTo = "=\"" + env.key + "\" value=\"" + env.value + "\"";
+        const replaceFrom = getRegex(`=\"${env.key}\" value=\".*\"`);
+        const replaceTo = `=\"${env.key}\" value=\"${env.value}\"`;
 
         fileData = fileData.replace(replaceFrom, replaceTo);
 
         if (!argsObj.replace) {
-            console.log(replaceTo.replace("=", ""));
+            log(replaceTo.replace("=", ""));
         }
     });
 
@@ -142,7 +136,7 @@ const getXmlAndReplace = (file, argsObj) => {
         return;
     }
 
-    fs.writeFileSync(filePath, fileData, options);
+    fs.writeFileSync(filePath, fileData, getOptions);
 }
 
 module.exports.execute = execute;

@@ -2,7 +2,7 @@
   "envs": [
     {
       "type": "ENVIRONMENT_TYPE",
-      "env": [
+      "envVars": [
         {
           "key": "ENVIRONMENT_NAME",
           "value": "ENVIRONMENT_VALUE"
@@ -10,18 +10,14 @@
       ]
     }
   ],
-  "additionalEnvs": [
+  "additionalScripts": [
     {
-      "type": "read",
+      "name": "SCRIPT_NAME",
+      "script": "SCRIPT",
       "filePath": "FILE_PATH",
       "regexSearch": "{ORIGIN}<REST_OF_REGEX>",
       "regexReplace": "",
-      "env": []
-    },
-    {
-      "type": "execute",
-      "filePath": "FILE_PATH",
-      "env": []
+      "envVars": []
     }
   ],
   "additionalCmd": [

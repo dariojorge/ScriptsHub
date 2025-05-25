@@ -5,15 +5,15 @@
       "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
-          "value": "This message is a message."
+          "value": "This message is a message from test."
         },
         {
           "key": "DEMO_MESSAGE_02",
-          "value": "When this is a message."
+          "value": "When this is a message for test."
         },
         {
           "key": "DEMO_MESSAGE_03",
-          "value": "Why message?"
+          "value": "Why message? From test."
         }
       ]
     },
@@ -22,11 +22,11 @@
       "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
-          "value": "This message is a message on second environment config."
+          "value": "This message is a message on second environment config from test-without-message-2."
         },
         {
           "key": "DEMO_MESSAGE_03",
-          "value": "Why message on second environment config.?"
+          "value": "Why message on second environment config? From test-without-message-2."
         }
       ]
     },
@@ -35,11 +35,11 @@
       "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
-          "value": "This message is a message on third environment config."
+          "value": "This message is a message on third environment config from test-without-message-3."
         },
         {
           "key": "DEMO_MESSAGE_02",
-          "value": "When this is a message on third environment config."
+          "value": "When this is a message on third environment config for test-without-message-3."
         }
       ]
     },
@@ -48,7 +48,7 @@
       "envVars": [
         {
           "key": "DEMO_MESSAGE_01",
-          "value": "This message is a message on forth environment config."
+          "value": "This message is a message on forth environment config from test-without-message-2-and-3."
         }
       ]
     }
@@ -102,7 +102,7 @@
   "additionalData": [
     {
       "type": "WORKING_ENV",
-      "envs": ["test-without-message-2-and-3"]
+      "envVars": ["test-without-message-2-and-3"]
     }
   ]
 }

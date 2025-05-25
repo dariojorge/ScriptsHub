@@ -1,5 +1,5 @@
 const { execSync } = require("child_process");
-const { convertStringToBoolean, getArgValue } = require("../../../utils/utils");
+const { convertStringToBoolean, getArgValue, log, error } = require("../../../utils/utils");
 const TYPE = {
     EXECUTE: 'EXECUTE',
     ARG: 'ARG'
@@ -29,17 +29,17 @@ const processCmd = (cmd, argsObj) => {
         case TYPE.EXECUTE:
             const conditionBoolean = convertStringToBoolean(cmd.value);
             if (conditionBoolean) {
-                console.log(execSync(cmd.cmd, options));
+                log(execSync(cmd.cmd, options));
             }
             break;
         case TYPE.ARG:
             const conditionArg = convertStringToBoolean(getArgValue(argsObj.args, cmd.value))
             if (conditionArg) {
-                console.log(execSync(cmd.cmd, options));
+                log(execSync(cmd.cmd, options));
             }
             break;
         default:
-            console.error(`Cmd type: ${cmd.type} is not configured.`);
+            error(`Cmd type: ${cmd.type} is not configured.`);
     }
 }
 

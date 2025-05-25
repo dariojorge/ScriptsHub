@@ -1,4 +1,4 @@
-const { getElementByType, getFilteredElement } = require("../../../utils/utils");
+const { getElementByType, getFilteredElement, isEmpty } = require("../../../utils/utils");
 const additionalName = "envSpecifics";
 
 const execute = (args) => {
@@ -20,12 +20,12 @@ const buildArgsObj = (argsObj) => {
 }
 
 const getWorkingEnvs = (argsObj) => {
-    const list = getElementByType(argsObj.additionalData, "WORKING_ENV");
-    if(list === undefined) {
+    const workingEnv = getElementByType(argsObj.additionalData, "WORKING_ENV");
+    if(isEmpty(workingEnv)) {
         return [];
     }
 
-    return list.envs;
+    return workingEnv.envVars;
 }
 
 module.exports.execute = execute;

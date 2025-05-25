@@ -1,13 +1,9 @@
 const fs = require("fs");
-const { getArgValue, isListEmpty } = require("./../../utils/utils");
+const { getArgValue, isListEmpty, error, getOptions } = require("./../../utils/utils");
 const scriptNameLabel = "scriptName";
 const operationNameLabel = "operationName";
 const folderPath = "scripts/{scriptName}";
 const templateFolderPath = "scripts/template/operations/templates/scripts";
-
-const options = {
-    encoding: "utf8"
-};
 
 const execute = (args) => {
     const argsObj = buildArgsObj(args);
@@ -31,12 +27,12 @@ const getFolderPathName = (argsObj) => folderPath.replace("{scriptName}", argsOb
 
 const createScriptFolders = (argsObj) => {
     if (fs.existsSync(argsObj.folderPath)) {
-        console.error("This script already exists.");
+        error("This script already exists.");
         return;
     }
 
     fs.mkdirSync(argsObj.folderPath);
-    fs.mkdirSync(argsObj.folderPath + "/operations");
+    fs.mkdirSync(`${argsObj.folderPath}/operations`);
 };
 
 const creatingAllTheDefaultFiles = (argsObj) => {
@@ -44,9 +40,9 @@ const creatingAllTheDefaultFiles = (argsObj) => {
         scriptsFileName: getScriptsFileName(argsObj),
         settingsFileName: getSettingsFileName(argsObj),
         operationFileName: getOperationFileName(argsObj),
-        templateScriptJsFilePath: templateFolderPath + "/scriptsTemplate.js",
-        templateScriptSettingsFilePath: templateFolderPath + "/settingsTemplate.json",
-        templateOperationFilePath: templateFolderPath + "/operationTemplate.js"
+        templateScriptJsFilePath: `${templateFolderPath}/scriptsTemplate.js`,
+        templateScriptSettingsFilePath: `${templateFolderPath}/settingsTemplate.json`,
+        templateOperationFilePath: `${templateFolderPath}/operationTemplate.js`
     }
 
     createScriptsFile(filePathObj);
@@ -54,15 +50,15 @@ const creatingAllTheDefaultFiles = (argsObj) => {
     createOperationFile(filePathObj);
 };
 
-getScriptsFileName = (argsObj) => argsObj.folderPath + "/scriptsTemplate.js".replace("scriptsTemplate", argsObj.scriptName);
+getScriptsFileName = (argsObj) => `${argsObj.folderPath}/${argsObj.scriptName}.js`;
 
-getSettingsFileName = (argsObj) => argsObj.folderPath + "/settingsTemplate.json".replace("settingsTemplate", "settings");
+getSettingsFileName = (argsObj) => `${argsObj.folderPath}/settings.json`;
 
-getOperationFileName = (argsObj) => argsObj.folderPath + "/operations/operationTemplate.js".replace("operationTemplate", argsObj.operationName);
+getOperationFileName = (argsObj) => `${argsObj.folderPath}/operations/${argsObj.operationName}.js`;
 
 createScriptsFile = (filePathObj) => {
     if (fs.existsSync(filePathObj.scriptsFileName)) {
-        console.error("The file already exists.");
+        error("The file already exists.");
         return;
     }
 
@@ -71,7 +67,7 @@ createScriptsFile = (filePathObj) => {
 
 createSettingsFile = (filePathObj) => {
     if (fs.existsSync(filePathObj.settingsFileName)) {
-        console.error("The file already exists.");
+        error("The file already exists.");
         return;
     }
     fs.copyFileSync(filePathObj.templateScriptSettingsFilePath, filePathObj.settingsFileName);
@@ -79,7 +75,7 @@ createSettingsFile = (filePathObj) => {
 
 createOperationFile = (filePathObj) => {
     if (fs.existsSync(filePathObj.operationFileName)) {
-        console.error("The file already exists.");
+        error("The file already exists.");
         return;
     }
     fs.copyFileSync(filePathObj.templateOperationFilePath, filePathObj.operationFileName);
@@ -87,12 +83,11 @@ createOperationFile = (filePathObj) => {
 
 const getEditSettingsFile = (argsObj) => {
     const settingsFilePath = "settings.json";
-
-    const data = fs.readFileSync(settingsFilePath, options);
+    const data = fs.readFileSync(settingsFilePath, getOptions);
     const jsonData = JSON.parse(data);
 
     if (!isListEmpty(validateSettingsJsonFile(jsonData, argsObj))) {
-        console.error("This script already exists.");
+        error("This script already exists.");
         return;
     }
 
@@ -104,18 +99,18 @@ const getEditSettingsFile = (argsObj) => {
     }
     jsonData.types.push(settingsJson);
 
-    fs.writeFileSync(settingsFilePath, JSON.stringify(jsonData), options);
+    fs.writeFileSync(settingsFilePath, JSON.stringify(jsonData), getOptions);
 }
 
 const getEditScriptsSettingsFile = (argsObj) => {
     const settingsFilePath = "/settings.json";
     const scriptsSettingsFilePath = argsObj.folderPath + settingsFilePath;
 
-    const data = fs.readFileSync(scriptsSettingsFilePath, options);
+    const data = fs.readFileSync(scriptsSettingsFilePath, getOptions);
     const jsonData = JSON.parse(data);
 
     if (!isListEmpty(validateScriptSettingsJsonFile(jsonData, argsObj))) {
-        console.error("This operation already exists.");
+        error("This operation already exists.");
         return;
     }
 
@@ -127,10 +122,10 @@ const getEditScriptsSettingsFile = (argsObj) => {
     }
     jsonData.types.push(settingsJson);
 
-    fs.writeFileSync(scriptsSettingsFilePath, JSON.stringify(jsonData), options);
+    fs.writeFileSync(scriptsSettingsFilePath, JSON.stringify(jsonData), getOptions);
 }
 
-const validateSettingsJsonFile = (jsonData, argsObj) => jsonData.types.filter(data => data.type===argsObj.scriptName);
-const validateScriptSettingsJsonFile = (jsonData, argsObj) => jsonData.types.filter(data => data.type===argsObj.operationName);
+const validateSettingsJsonFile = (jsonData, argsObj) => jsonData.types.filter(data => data.type === argsObj.scriptName);
+const validateScriptSettingsJsonFile = (jsonData, argsObj) => jsonData.types.filter(data => data.type === argsObj.operationName);
 
 module.exports.execute = execute;

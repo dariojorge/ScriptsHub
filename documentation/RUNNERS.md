@@ -26,7 +26,7 @@ folder we have the `envs.json` that we will configure:
 ```
 
 Inside the json file we will have `envs` object where we will be setting the list of environments.
-We have the `additionalEnvs` object where we will be setting another way to have the environment variables, this has two types of behaviours:
+We have the `additionalScripts` object where we will be setting another way to have the environment variables, this has two types of behaviours:
  - read: This type it needs a file where it has the environment variables in a text file, this will not work in a json format yet, 
 we also need to provide the `regexSearch` to search for the origin environment variable and build the list with the key environment using the `regexReplace`.
  - execute: This type you provide a script where it will execute it for the env list that we provide, it may interact with the `additionalData`.
@@ -36,7 +36,7 @@ We have the `additionalCmd` to run additional commands if we need, and we have t
  - execute: This type will execute the `cmd` every time if the `value` will be set as true as this will be a true/false value.
 
 We have the `additionalData` to have an additional list in case we need it for interactions with the scripts,
-example the `additionalEnvs` execute could use the `additionalData` for extra information and behaviours.
+example the `additionalScripts` execute could use the `additionalData` for extra information and behaviours.
 
 This will be the structure:
 
@@ -45,7 +45,7 @@ This will be the structure:
     "envs": [
         {
             "type": "<environment>",
-            "env": [
+            "envVars": [
                 {
                     "key": "<environment name>",
                     "value": "<environment value>"
@@ -53,26 +53,17 @@ This will be the structure:
             ]
         }
     ],
-    "additionalEnvs": [
+    "additionalScripts": [
         {
-            "type": "read",
+            "name": "read",
             "filePath": "<file path>",
+            "script": "<script path>",
             "regexSearch": "{ORIGIN}<regex to search>",
             "regexReplace": "<regex to replace>",
-            "env": [
+            "envVars": [
                 {
                     "key": "<environment name>",
                     "origin": "<environment origin>"
-                }
-            ]
-        },
-        {
-            "type": "execute",
-            "filePath": "<file path>",
-            "env": [
-                {
-                    "key": "<environment name>",
-                    "value": "<environment value>"
                 }
             ]
         }

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { getArgValue, isListEmpty, firstElement } = require("./../../utils/utils");
+const { getArgValue, isListEmpty, firstElement, error, warning } = require("./../../utils/utils");
 const projectNameLabel = "projectName";
 const techTypeLabel = "techType";
 const projectsFolder = "./projects";
@@ -15,8 +15,8 @@ const execute = (args) => {
     argsObj.templateRunnerFiles = getTemplateRunnerFiles(argsObj);
     argsObj.runnerFiles = getRunnerFiles(argsObj);
 
-    argsObj.projectPath = projectsFolder + "/" + argsObj.projectName;
-    argsObj.templatePath = templateRunnerFolderPath + "/runners";
+    argsObj.projectPath = `${projectsFolder}/${argsObj.projectName}`;
+    argsObj.templatePath = `${templateRunnerFolderPath}/runners`;
 
     convertAndCreateEnvFile(argsObj);
     convertAndCreateRunnerFiles(argsObj);
@@ -31,7 +31,7 @@ const buildArgsObj = (argsObj) => {
 
 const createProjectsFolder = () => {
     if (fs.existsSync(projectsFolder)) {
-        console.error("Folder projects already exists.");
+        error("Folder projects already exists.");
         return;
     }
 
@@ -39,9 +39,9 @@ const createProjectsFolder = () => {
 }
 
 const createProjectFolder = (argsObj) => {
-    const projectFolder = projectsFolder + "/" + argsObj.projectName;
+    const projectFolder = `${projectsFolder}/${argsObj.projectName}`;
     if (fs.existsSync(projectFolder)) {
-        console.error("Folder " + argsObj.projectName + " already exists.");
+        error(`Folder ${argsObj.projectName} already exists.`);
         return;
     }
 
@@ -49,9 +49,9 @@ const createProjectFolder = (argsObj) => {
 }
 
 const createRunnerFolder = (argsObj) => {
-    const runnersFolder = projectsFolder + "/" + argsObj.projectName + "/runners";
+    const runnersFolder = `${projectsFolder}/${argsObj.projectName}/runners`;
     if (fs.existsSync(runnersFolder)) {
-        console.error("Folder runners already exists.");
+        error("Folder runners already exists.");
         return;
     }
 
@@ -59,13 +59,13 @@ const createRunnerFolder = (argsObj) => {
 }
 
 const getTemplateRunnerFiles = (argsObj) => {
-    const filePath = templateRunnerFolderPath + "/runners/" + argsObj.techType;
-    return fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile())
+    const filePath = `${templateRunnerFolderPath}/runners/${argsObj.techType}`;
+    return fs.readdirSync(filePath).filter(file => fs.statSync(`${filePath}/${file}`).isFile())
 };
 
 const getRunnerFiles = (argsObj) => {
-    const filePath = projectsFolder + "/" + argsObj.projectName + "/runners";
-    return fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile())
+    const filePath = `${projectsFolder}/${argsObj.projectName}/runners`;
+    return fs.readdirSync(filePath).filter(file => fs.statSync(`${filePath}/${file}`).isFile())
 };
 
 const convertAndCreateEnvFile = (argsObj) => {
@@ -73,15 +73,15 @@ const convertAndCreateEnvFile = (argsObj) => {
     const isTemplateEnvFilePresent = validateTemplateEnvFileIsPresent(argsObj.templatePath);
 
     if(!isEnvFilePresent && isTemplateEnvFilePresent) {
-       fs.copyFileSync(argsObj.templatePath + "/" + templateEnvJson, argsObj.projectPath + "/envs.json");
+       fs.copyFileSync(`${argsObj.templatePath}/${templateEnvJson}`, `${argsObj.projectPath}/envs.json`);
     }
 }
 
 const validateEnvFileIsPresent = (filePath) => {
-    const files = fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile());
+    const files = fs.readdirSync(filePath).filter(file => fs.statSync(`${filePath}/${file}`).isFile());
 
     if (isListEmpty(files)) {
-        console.log("No env file present.");
+        warning("No env file present.");
         return false;
     }
 
@@ -89,10 +89,10 @@ const validateEnvFileIsPresent = (filePath) => {
 };
 
 const validateTemplateEnvFileIsPresent = (filePath) => {
-    const files = fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile());
+    const files = fs.readdirSync(filePath).filter(file => fs.statSync(`${filePath}/${file}`).isFile());
 
     if (isListEmpty(files)) {
-        console.log("No template env file present.");
+        warning("No template env file present.");
         return false;
     }
 
@@ -104,11 +104,11 @@ const convertAndCreateRunnerFiles = (argsObj) => {
         const index = argsObj.templateRunnerFiles.indexOf(file);
         if (index > -1) {
             const runnerTemplate = argsObj.templateRunnerFiles[index];
-            const runner = runnerTemplate.replace("_template", "_" + argsObj.projectName).replaceAll("-", "_");
+            const runner = runnerTemplate.replace("_template", `_${argsObj.projectName}`).replaceAll("-", "_");
 
             if(!validateRunnerFileIsPresent(argsObj.projectPath, runner)) {
-                const from = argsObj.templatePath + "/" + argsObj.techType + "/" + runnerTemplate;
-                const to = argsObj.projectPath + "/runners/" + runner;
+                const from = `${argsObj.templatePath}/${argsObj.techType}/${argsObj.runnerTemplate}`;
+                const to = `${argsObj.projectPath}/runners/${runner}`;
                 fs.copyFileSync(from, to);
             }
         }
@@ -116,10 +116,10 @@ const convertAndCreateRunnerFiles = (argsObj) => {
 }
 
 const validateRunnerFileIsPresent = (filePath, runner) => {
-    const files = fs.readdirSync(filePath).filter(file => fs.statSync(filePath + '/' + file).isFile());
+    const files = fs.readdirSync(filePath).filter(file => fs.statSync(`${filePath}/${file}`).isFile());
 
     if (isListEmpty(files)) {
-        console.log("No file present.");
+        warning("No file present.");
         return false;
     }
 

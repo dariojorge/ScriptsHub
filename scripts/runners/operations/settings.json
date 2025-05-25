@@ -1,0 +1,25 @@
+{
+  "types": [
+    {
+      "name": "update",
+      "type": "update",
+      "cmdList": [
+        {}
+      ]
+    },
+    {
+      "name": "test",
+      "type": "test",
+      "cmdList": [
+        {}
+      ]
+    },
+    {
+      "name": "create",
+      "type": "create",
+      "cmdList": [
+        {}
+      ]
+    }
+  ]
+}

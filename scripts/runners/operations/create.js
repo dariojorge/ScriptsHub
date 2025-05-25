@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { validateDestinationPath, validateDestinationPathNoCreation, getFiles, getArgValue, convertStringToBoolean } = require("../../utils/utils");
+const { validateDestinationPath, validateDestinationPathNoCreation, getFiles, getArgValue, convertStringToBoolean, log, error } = require("../../utils/utils");
 const createFilesLabel = "createFiles";
 let runnersPathFrom = "projects/{project}/runners";
 let projectPath = "../{project}";
@@ -7,12 +7,12 @@ let ideaPath = "/.idea";
 let runnersPath = "/runConfigurations";
 
 const execute = (args) => {
-    console.log('Starting process for the project: ' + args.project);
+    log('Starting process for the project: ' + args.project);
     const argsObj = buildArgsObj(args);
 
     const modifiedProjectPath = projectPath.replace("{project}", argsObj.project);
-    if(!validateDestinationPathNoCreation(modifiedProjectPath)) {
-        console.error(`Project ${argsObj.project} does not exist`);
+    if (!validateDestinationPathNoCreation(modifiedProjectPath)) {
+        error(`Project ${argsObj.project} does not exist`);
         return;
     }
 
@@ -52,13 +52,13 @@ const copyFiles = (fileData) => {
 
     let valueCount = 0;
     fileList.forEach(file => {
-        const from = fileData.fromFolderPath + "/" + file;
-        const to = fileData.toFolderPath + "/" + file.replace(".xml", ".run.xml");
+        const from = `${fileData.fromFolderPath}/${file}`;
+        const to = `${fileData.toFolderPath}/${file.replace(".xml", ".run.xml")}`;
 
         fs.copyFileSync(from, to);
         valueCount++;
     });
-    console.log("Files created where: " + valueCount);
+    log(`Files created where: ${valueCount}`);
 }
 
 module.exports.execute = execute;

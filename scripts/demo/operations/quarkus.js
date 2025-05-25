@@ -1,6 +1,6 @@
 const fs = require("fs");
 const execSync = require('child_process').execSync;
-const { getArgValue } = require("./../../utils/utils");
+const { getArgValue, error, log, isEmpty, getRegex, getOptions } = require("./../../utils/utils");
 const demoTypeLabel = "demoType";
 const versionLabel = "version";
 const demoPath = "./demo/{demoType}";
@@ -8,18 +8,18 @@ const pomLabel = "demo-java-version";
 const baseJavaVersion = 17;
 
 const execute = (args) => {
-    console.log("Start Demo setup");
+    log("Start Demo setup");
     const argsObj = buildArgsObj(args);
 
     if (!validateDemoType(argsObj)) {
-        console.error("End Demo setup as the validation failed.");
+        error("End Demo setup as the validation failed.");
         return;
     }
 
     copyDemoProjectToDestiny(argsObj);
     changePomJavaVersion(argsObj);
     runTheMvnCmd(argsObj);
-    console.log("End Demo setup.");
+    log("End Demo setup.");
 };
 
 const buildArgsObj = (argsObj) => {
@@ -32,13 +32,13 @@ const buildArgsObj = (argsObj) => {
 getVersion = (args) => {
     const javaVersion = getArgValue(args, versionLabel);
 
-    if (javaVersion === undefined) {
-        console.error("Using the default version:" + baseJavaVersion);
+    if (isEmpty(javaVersion)) {
+        error(`Using the default version: ${baseJavaVersion}`);
         return baseJavaVersion;
     }
 
     if (parseInt(javaVersion) < baseJavaVersion) {
-        console.error("The java version has to be 17+");
+        error("The java version has to be 17+");
         process.exit(1);
     }
 
@@ -55,19 +55,19 @@ const copyDemoProjectToDestiny = (argsObj) => {
 }
 
 changePomJavaVersion = (argsObj) => {
-    const basePath = "../" + argsObj.demoType;
-    const pomPath = basePath + "/pom.xml";
+    const basePath = `../${argsObj.demoType}`;
+    const pomPath = `${basePath}/pom.xml`;
 
-    let pomData = fs.readFileSync(pomPath, 'utf8');
+    let pomData = fs.readFileSync(pomPath, getOptions);
     if (!pomData.includes(pomLabel)) {
         return;
     }
 
-    const replaceFrom = new RegExp(`${pomLabel}`, 'gi');
+    const replaceFrom = getRegex(`${pomLabel}`);
     const replaceTo = argsObj.version;
 
     pomData = pomData.replace(replaceFrom, replaceTo);
-    fs.writeFileSync(pomPath, pomData, 'utf8');
+    fs.writeFileSync(pomPath, pomData, getOptions);
 }
 
 const runTheMvnCmd = (argsObj) => {

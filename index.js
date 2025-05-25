@@ -1,18 +1,14 @@
 let args = process.argv.slice(2);
-const { firstElement, getArgValue, isListEmpty } = require("./scripts/utils/utils");
-const scriptTypeLabel="scriptType";
-const scriptPath="./scripts";
+const { getArgValue, error, getRegex, getElementByType, isEmpty, isListEmpty } = require("./scripts/utils/utils");
+const scriptTypeLabel = "scriptType";
+const scriptPath = "./scripts";
 
 const init = () => {
-    if (args === 0) {
-        console.error('Expected at least one argument!');
-        process.exit(1);
-    }
-
+    validateArguments()
     extractTextFromArguments();
 
     const scriptType = getArgValue(args, scriptTypeLabel);
-    if(scriptType===undefined) {
+    if (isEmpty(scriptType)) {
         process.exit(1);
     }
 
@@ -24,21 +20,28 @@ const init = () => {
     scriptExecute.execute(args);
 }
 
+const validateArguments = () => {
+    if (isListEmpty(args)) {
+        error('Expected at least one argument!');
+        process.exit(1);
+    }
+}
+
 const extractTextFromArguments = () => {
     const singleArgs = joinAllArguments();
-    const searchForText = new RegExp(`(\\w+)=[\"]([^\"]*)[\"]`, 'gi');
-    const searchForOtherArgs = new RegExp(`(\\w+)=(\\S+)`, 'gi');
+    const searchForText = getRegex(`(\\w+)=[\"]([^\"]*)[\"]`);
+    const searchForOtherArgs = getRegex(`(\\w+)=(\\S+)`);
 
     const matchedText = singleArgs.match(searchForText);
     const matchedArgs = singleArgs.match(searchForOtherArgs);
 
     args = [];
 
-    if(matchedText) {
+    if (matchedText) {
         args.push(...matchedText);
     }
 
-    if(matchedArgs) {
+    if (matchedArgs) {
         args.push(...matchedArgs);
     }
 
@@ -47,20 +50,20 @@ const extractTextFromArguments = () => {
 const joinAllArguments = () => {
     let allArgsIntoText = "";
     args.forEach(data => {
-        allArgsIntoText += data + " ";
+        allArgsIntoText += `${data} `;
     });
     return allArgsIntoText;
 }
 
 const getSettings = (scriptType) => {
     const scriptHubSettings = require('./settings.json');
-    const selectedScriptList=scriptHubSettings.types.filter(types => types.type===scriptType);
-    if (isListEmpty(selectedScriptList.length)) {
-        console.error('Missing settings for this script type.');
+    const selectedScriptList = getElementByType(scriptHubSettings.types, scriptType);
+    if (isEmpty(selectedScriptList)) {
+        error('Missing settings for this script type.');
         process.exit(1);
     }
 
-    return firstElement(selectedScriptList);
+    return selectedScriptList;
 }
 
 const removeScriptTypeFromArgs = (scriptType) => {

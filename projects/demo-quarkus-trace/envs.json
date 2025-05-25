@@ -2,10 +2,10 @@
   "envs": [
     {
       "type": "test",
-      "env": []
+      "envVars": []
     }
   ],
-  "additionalEnvs": [],
+  "additionalScripts": [],
   "additionalCmd": [
     {
       "type": "arg",

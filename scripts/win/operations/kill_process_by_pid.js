@@ -1,5 +1,5 @@
 const execSync = require('child_process').execSync;
-const { getArgValue, isListEmpty, firstElement } = require("./../../utils/utils");
+const { getArgValue, isListEmpty, firstElement, error, getRegex } = require("./../../utils/utils");
 const portLabel = "port";
 
 const execute = (args) => {
@@ -22,7 +22,7 @@ const getPid = (argsObj) => {
     const dataFiltered = netStatData.toString("utf8").match(regexPort);
 
     if (isListEmpty(dataFiltered)) {
-        console.error("There was no port found, this process may not be in use anymore.");
+        error("There was no port found, this process may not be in use anymore.");
         process.exit(1);
     }
 
@@ -33,8 +33,6 @@ const getPid = (argsObj) => {
 }
 
 const getNetStatData = () => execSync("netstat -a -n -o");
-
-const getRegex = (regex) => new RegExp(regex, 'gi');
 
 const killProcess = (pid) => execSync(`TASKKILL /PID ` + pid + ` /f`);
 

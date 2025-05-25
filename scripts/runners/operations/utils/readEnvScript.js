@@ -1,5 +1,5 @@
 const { execSync } = require("child_process");
-const { getFilteredElement, firstElement, isListEmpty } = require("../../../utils/utils");
+const { getFilteredElement, firstElement, isListEmpty, getRegex } = require("../../../utils/utils");
 const additionalName = "readEnvScript";
 
 const execute = (args) => {
@@ -28,8 +28,8 @@ const readAdditionalScript = (argsObj) => {
     envVars.forEach(envObj => {
         const regexSearch = additionalScript.regexSearch.replace("{ORIGIN}", envObj.origin);
         const regexReplace = additionalScript.regexReplace.replace("{ORIGIN}", envObj.origin);
-        const replaceFrom = new RegExp(regexSearch, 'gi');
-        const cleanFrom = new RegExp(regexReplace, 'gi');
+        const replaceFrom = getRegex(regexSearch);
+        const cleanFrom = getRegex(regexReplace);
         
         envVarsList.push({
             key: envObj.key,
