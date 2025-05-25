@@ -57,7 +57,7 @@
     {
       "name": "readEnvScript",
       "filePath": "../demo-quarkus/demoExamples/demoEnvs.txt",
-      "script": "../utils/readEnvScript.js",
+      "script": "../additionalScripts/readEnvScript.js",
       "regexSearch": "{ORIGIN}=.*",
       "regexReplace": ".*=",
       "envVars": [
@@ -73,7 +73,7 @@
     },
     {
       "name": "envSpecifics",
-      "script": "../utils/additionalEnvSpecific.js",
+      "script": "../additionalScripts/additionalEnvSpecific.js",
       "envVars": [
         {
           "key": "DEMO_MESSAGE_03",

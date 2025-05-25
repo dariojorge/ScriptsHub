@@ -24,6 +24,9 @@ const execute = (args) => {
     }
 
     runnerList.forEach(file => {
+        if (!argsObj.replace) {
+            log(`In File: ${file}`);
+        }
         getXmlAndReplace(file, argsObj);
     });
 };
