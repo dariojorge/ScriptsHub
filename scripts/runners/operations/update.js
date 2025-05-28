@@ -68,11 +68,7 @@ const addOrReplaceEnvironmentVariables = (envVars = [], envVarsList) => {
 
     return [...envVars, ...envVarsList].filter(env => {
         const elem = getElementByKey(envVars, env.key);
-        if (!isBlank(elem) && elem.value !== env.value) {
-            return false;
-        }
-
-        return true;
+        return !(!isBlank(elem) && elem.value !== env.value);
     });
 }
 
