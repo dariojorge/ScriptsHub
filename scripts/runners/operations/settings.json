@@ -2,24 +2,40 @@
   "types": [
     {
       "name": "update",
-      "type": "update",
+      "types": ["update", "test"],
       "cmdList": [
-        {}
-      ]
-    },
-    {
-      "name": "test",
-      "type": "test",
-      "cmdList": [
-        {}
+        {
+          "name": "projects",
+          "type": "projectList"
+        },
+        {
+          "name": "environment",
+          "type": "envs",
+          "file": "envs.json",
+          "dependent": "projects"
+        },
+        {
+          "name": "additionalCmd",
+          "type": "additionalCmd",
+          "file": "envs.json",
+          "dependent": "projects"
+        }
       ]
     },
     {
       "name": "create",
-      "type": "create",
+      "types": ["create"],
       "cmdList": [
-        {}
+        {
+          "name": "projects",
+          "type": "projectList"
+        },
+        {
+          "name": "createFiles",
+          "type": "boolean"
+        }
       ]
     }
-  ]
+  ],
+  "type": "operation"
 }

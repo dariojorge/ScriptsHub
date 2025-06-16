@@ -6,5 +6,6 @@
       "basePath": "./operations/",
       "script": "collector-jaeger.js"
     }
-  ]
+  ],
+  "type": "type"
 }

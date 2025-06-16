@@ -1,7 +1,6 @@
 let args = process.argv.slice(2);
 const { getArgValue, error, getRegex, getElementByType, isEmpty, isListEmpty } = require("./scripts/utils/utils");
 const scriptTypeLabel = "scriptType";
-const scriptPath = "./scripts";
 
 const init = () => {
     validateArguments()
@@ -13,7 +12,7 @@ const init = () => {
     }
 
     const settings = getSettings(scriptType);
-    const scriptExecute = require(`${scriptPath}${settings.basePath}${settings.script}`);
+    const scriptExecute = require(`${settings.basePath}${settings.script}`);
 
     removeScriptTypeFromArgs(scriptType);
 

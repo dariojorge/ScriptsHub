@@ -12,5 +12,6 @@
       "basePath": "./operations/",
       "script": "generateScript.js"
     }
-  ]
+  ],
+  "type": "type"
 }

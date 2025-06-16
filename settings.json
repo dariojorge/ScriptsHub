@@ -3,44 +3,45 @@
     {
       "name": "runners",
       "type": "runners",
-      "basePath": "/runners/",
+      "basePath": "./scripts/runners/",
       "script": "runners.js"
     },
     {
       "name": "docker",
       "type": "docker",
-      "basePath": "/docker/",
+      "basePath": "./scripts/docker/",
       "script": "docker.js"
     },
     {
       "name": "git",
       "type": "git",
-      "basePath": "/git/",
+      "basePath": "./scripts/git/",
       "script": "git.js"
     },
     {
       "name": "win",
       "type": "win",
-      "basePath": "/win/",
+      "basePath": "./scripts/win/",
       "script": "win.js"
     },
     {
       "name": "template",
       "type": "template",
-      "basePath": "/template/",
+      "basePath": "./scripts/template/",
       "script": "template.js"
     },
     {
       "name": "demo",
       "type": "demo",
-      "basePath": "/demo/",
+      "basePath": "./scripts/demo/",
       "script": "demo.js"
     },
     {
       "name": "trace",
       "type": "trace",
-      "basePath": "/trace/",
+      "basePath": "./scripts/trace/",
       "script": "trace.js"
     }
-  ]
+  ],
+  "type": "scriptType"
 }

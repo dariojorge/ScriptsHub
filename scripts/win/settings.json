@@ -6,5 +6,6 @@
       "basePath": "./operations/",
       "script": "kill_process_by_pid.js"
     }
-  ]
+  ],
+  "type": "type"
 }

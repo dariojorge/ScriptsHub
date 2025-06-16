@@ -12,5 +12,6 @@
       "basePath": "./operations/",
       "script": "bundle.js"
     }
-  ]
+  ],
+  "type": "type"
 }

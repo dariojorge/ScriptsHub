@@ -6,5 +6,6 @@
       "basePath": "./operations/",
       "script": "squash.js"
     }
-  ]
+  ],
+  "type": "type"
 }
