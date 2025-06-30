@@ -9,16 +9,14 @@
           "type": "projectList"
         },
         {
-          "name": "environment",
+          "name": "env",
           "type": "envs",
-          "file": "envs.json",
-          "dependent": "projects"
+          "file": "envs.json"
         },
         {
           "name": "additionalCmd",
           "type": "additionalCmd",
-          "file": "envs.json",
-          "dependent": "projects"
+          "file": "envs.json"
         }
       ]
     },
