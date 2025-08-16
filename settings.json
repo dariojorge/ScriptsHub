@@ -41,6 +41,12 @@
       "type": "trace",
       "basePath": "./scripts/trace/",
       "script": "trace.js"
+    },
+    {
+      "name": "app",
+      "type": "app",
+      "basePath": "/app/",
+      "script": "app.js"
     }
   ],
   "type": "scriptType"

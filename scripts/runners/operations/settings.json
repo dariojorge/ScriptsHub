@@ -29,7 +29,7 @@
           "type": "projectList"
         },
         {
-          "name": "createFiles",
+          "name": "recreateFiles",
           "type": "boolean"
         }
       ]

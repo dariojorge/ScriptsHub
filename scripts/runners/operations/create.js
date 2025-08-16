@@ -1,23 +1,31 @@
 const fs = require("fs");
-const { validateDestinationPath, validateDestinationPathNoCreation, getFiles, getArgValue, convertStringToBoolean, log, error } = require("../../utils/utils");
-const createFilesLabel = "createFiles";
-let runnersPathFrom = "projects/{project}/runners";
-let projectPath = "../{project}";
+const { validateDestinationPath, validateDestinationPathNoCreation, getFiles, getArgValue, convertStringToBoolean, log, error, warning } = require("../../utils/utils");
+const recreateFilesLabel = "recreateFiles";
+let projectInternalPath = "projects/{project}";
+let runnersLabel = `runners`;
+let projectExternalPath = "../{project}";
 let ideaPath = "/.idea";
-let runnersPath = "/runConfigurations";
+const runConfigurationsPath = "/runConfigurations";
 
 const execute = (args) => {
     log('Starting process for the project: ' + args.project);
     const argsObj = buildArgsObj(args);
 
-    const modifiedProjectPath = projectPath.replace("{project}", argsObj.project);
+    const projectsPath = projectInternalPath.replace("{project}", argsObj.project);
+    const modifiedProjectPath = projectExternalPath.replace("{project}", argsObj.project);
+
+    if (!validateDestinationPathNoCreation(projectsPath)) {
+        error(`Project ${argsObj.project} does not exist in the folder projects.`);
+        return;
+    }
+
     if (!validateDestinationPathNoCreation(modifiedProjectPath)) {
         error(`Project ${argsObj.project} does not exist`);
         return;
     }
 
-    const modifiedRunnersPathFrom = runnersPathFrom.replace("{project}", argsObj.project);
-    runnersPath = modifiedProjectPath + ideaPath + runnersPath;
+    const modifiedRunnersPathFrom = `${projectsPath}/${runnersLabel}`;
+    const runnersPath = modifiedProjectPath + ideaPath + runConfigurationsPath;
     validateDestinationPath(modifiedProjectPath + ideaPath);
     validateDestinationPath(runnersPath);
 
@@ -26,21 +34,27 @@ const execute = (args) => {
         fromFolderPath: modifiedRunnersPathFrom,
         toListOfFiles: getFiles(runnersPath),
         toFolderPath: runnersPath,
-        createFiles: argsObj.createFiles
+        recreateFiles: argsObj.recreateFiles || true
     }
     copyFiles(fileData);
 };
 
 const buildArgsObj = (argsObj) => {
     return {
-        createFiles: convertStringToBoolean(getArgValue(argsObj.args, createFilesLabel)),
+        recreateFiles: convertStringToBoolean(getArgValue(argsObj.args, recreateFilesLabel)),
         project: argsObj.project
     };
 }
 
 const copyFiles = (fileData) => {
     let fileList = fileData.fromListOfFiles;
-    if (!fileData.createFiles) {
+
+    if(fileList === undefined) {
+        warning(`No runner folder present.`);
+        return;
+    }
+
+    if (!fileData.recreateFiles) {
         fileData.toListOfFiles.forEach(toFile => {
             toFile = toFile.replace(".run", "");
             const index = fileList.indexOf(toFile);

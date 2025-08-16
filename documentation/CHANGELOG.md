@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.2.0
+### Added or Changed
+- Feature: Adding the electron app to interface with the runners
+
+## v0.1.9
+### Added or Changed
+- Bugfix: Fixing the error when project does not have the folder runners
+- Bugfix: Changing the updateFiles to recreateFiles
+- Bugfix: Changing the default of the recreateFiles to be always true
+
+## v0.1.8
+### Added or Changed
+- Feature: Improving the README by introducing the INTRODUCTION
+- Feature: Changing the createFiles to updateFiles and making it not mandatory by default is false
+
+## v0.1.7
+### Added or Changed
+- Bugfix: Fixing the create files on multiple projects that was failing
+- Bugfix: Fixing if the project is missing inside the runner project
+
+## v0.1.6
+### Added or Changed
+- Feature: Changed the projects envs.json to clean the environments variables
+
 ## v0.1.5
 ### Added or Changed
 - Bugfix: Removing console logs

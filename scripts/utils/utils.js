@@ -2,7 +2,7 @@ const fs = require("fs");
 
 // LOGS
 const log = (message) => console.log(message);
-const warning = (message) => console.warning(message);
+const warning = (message) => console.warn(message);
 const error = (message) => console.error(message);
 module.exports.log = log;
 module.exports.warning = warning;
@@ -34,6 +34,14 @@ module.exports.getArgValue = (args, argLabel) => {
     }
 
     return firstElement(argList).replace(argLabelModified, "");
+}
+module.exports.createFoldersIfMissing = (dir) => {
+    try {
+      fs.mkdirSync(dir, { recursive: true });
+      log('Directories created successfully');
+    } catch (err) {
+      error('Error creating directories:', err);
+    }
 }
 module.exports.validateDestinationPath = (dir) => !fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined;
 module.exports.validateDestinationPathNoCreation = (dir) => fs.existsSync(dir);

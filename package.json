@@ -1,6 +1,13 @@
 {
   "name": "script-hub",
-  "version": "v0.1.5",
-  "workspaces": [],
+  "version": "v0.2.0",
+  "workspaces": [
+    "scripts/win/operations/monitor-server/",
+    "scripts/app/operations/electron-app/"
+  ],
+  "scripts": {
+    "electron:start": "npm run dev:electron --workspace=electron-app",
+    "electron:build": "npm run build --workspace=electron-app"
+  },
   "dependencies": {}
 }

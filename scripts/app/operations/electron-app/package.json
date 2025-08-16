@@ -1,0 +1,75 @@
+{
+  "name": "electron-app",
+  "version": "0.0.1",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev:test": "npm run build && npm run dev:electron",
+    "dev:build": "tsc --watch",
+    "dev:electron": "electron .",
+    "dev": "npm run build && concurrently \"npm:dev:build\" \"npm:dev:electron\"",
+    "dev:main": "cross-env NODE_ENV=development webpack --config webpack.main.config.js --watch",
+    "dev:renderer": "webpack serve --config webpack.renderer.config.js",
+    "build": "webpack --config webpack.main.config.js && webpack --config webpack.renderer.config.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux"
+  },
+  "build": {
+    "productName": "ElectronApp",
+    "copyright": "Copyright © 2025",
+    "appId": "https://github.com/dariojorge/ScriptsHub",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "dariojorge",
+        "repo": "ScriptsHub"
+      }
+    ],
+    "icon": "assets/icon",
+    "files": [
+      "dist/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "dependencies": {
+    "@seald-io/nedb": "^4.1.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "concurrently": "^9.2.0",
+    "cross-env": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "electron": "37.2.6",
+    "electron-builder": "^26.0.12",
+    "html-webpack-plugin": "^5.6.3",
+    "sass": "^1.90.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}

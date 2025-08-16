@@ -18,6 +18,13 @@ processors:
         match_type: regexp
         span_names:
           - ^.* Client Request Data$
+  filter/exclude_options:
+    spans:
+      exclude:
+        match_type: regexp
+        attributes:
+          - key: "http.request.method"
+            value: "OPTIONS"
 # exporters configure how to send processed data to one or more backends.
 exporters:
   debug:
@@ -37,5 +44,5 @@ service:
   pipelines:
     traces/jaeger:
       receivers: [ otlp ]
-      processors: [ batch/jaeger, filter/filter_client_request_data_spans ]
+      processors: [ batch/jaeger, filter/filter_client_request_data_spans, filter/exclude_options ]
       exporters: [ debug, otlp/jaeger ]

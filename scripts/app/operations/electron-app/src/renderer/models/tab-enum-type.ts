@@ -1,0 +1,8 @@
+export enum TabEnumType {
+    HOME = "HOME",
+    ENDPOINTS = "ENDPOINTS",
+    SETTINGS = "SETTINGS",
+    RUNNERS = "RUNNERS",
+    SCRIPTS = "SCRIPTS",
+    DOCUMENTATION = "DOCUMENTATION"
+}

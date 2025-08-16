@@ -19,7 +19,7 @@ The quarkus demo was created to show an example of how the process of using the 
 ```
 
 5. If you now run the command for the runners to create the files, this will create the runners for the project.
-6. Example of the command to run: `./scriptHub.sh scriptType=runners type=create projects=demo-quarkus createFiles=true`
+6. Example of the command to run: `./scriptHub.sh scriptType=runners type=create projects=demo-quarkus recreateFiles=true`
 7. The expected behaviour will be to have the new runner files in the project:
 
 ```bash

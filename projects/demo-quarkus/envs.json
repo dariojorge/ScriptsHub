@@ -1,6 +1,10 @@
 {
   "envs": [
     {
+      "type": "quarkus",
+      "envVars": []
+    },
+    {
       "type": "test",
       "envVars": [
         {
@@ -96,7 +100,7 @@
     {
       "type": "arg",
       "value": "openIntellij",
-      "cmd": "node scripts/utils/openIntellij.js project=demo-quarkus"
+      "cmd": "node scripts/utils/openIntellij.js project=projectLabel"
     }
   ],
   "additionalData": [

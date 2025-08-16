@@ -1,0 +1,11 @@
+{
+  "types": [
+    {
+      "name": "start",
+      "type": "start",
+      "basePath": "./operations/",
+      "script": "start.js"
+    }
+  ],
+  "type": "type"
+}

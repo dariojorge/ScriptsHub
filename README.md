@@ -4,26 +4,18 @@
 
 ## **Script Hub**
 
-Script Hub is a tool to merge all the scripts into one place.
+ScriptHub is a tool to configure and interact easily with the services and its environments.
 
 <p style="text-align:right;">(<a href="#readme-top">back to top</a>)</p>
 
 ## **Introduction**
 
-This is a hub for scripts, in order to have a place to easily interact with all the scripts,
-instead of having them all scattered and having the way to interact with them all in a different way.
+In this ScriptHub, will have a way to interact with the runners instead of them being scattered.
+
+the issue that we want to solve is to instead of having them all scattered and having the way to interact with them all in a different way.
 This offers a place to unify the interaction with the scripts, making it easier to use.
 
-<p style="text-align:right;">(<a href="#readme-top">back to top</a>)</p>
-
-## **Installation**
-
-To install the Script Hub, follow these steps:
-
-1. Select the folder where you have the project(s)
-2. Clone the repository: **`git clone https://github.com/dariojorge/ScriptsHub.git`**
-3. Make sure you have the Node.js installed in you machine
-4. In case you don't have the Node.js installed go to the page: **`https://nodejs.org/en/download`**
+To start with this tool check the [INTRODUCTION](documentation/INTRODUCTION.md) for the information of how to setup the project
 
 <p style="text-align:right;">(<a href="#readme-top">back to top</a>)</p>
 
@@ -32,8 +24,7 @@ To install the Script Hub, follow these steps:
 To use Script Hub, follow these steps:
 
 1. Open a terminal inside the folder scriptsHub
-2. If you are using linux based OS then don't forget to make the runnable using the command **`chmod +x ./scriptHub.sh`
-   **
+2. If you are using linux based OS then don't forget to make the runnable using the command **`chmod +x ./scriptHub.sh`**
 3. To run the scripts check the [Table Of Commands](#table-of-commands) as we are listing there all the current commands
    possible with the script
 4. For more info about the arguments used in the commands check the [Table of Arguments](#table-of-arguments) to know
@@ -45,7 +36,7 @@ To use Script Hub, follow these steps:
 
 | Command                                                                                                                     | Description                                                                                                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `./scriptHub.sh scriptType=runners type=create projects=<projects> createFiles=<true/false>`                                | This command is to copy the runners from the projects folder to the **Intellij only**                                                                                                               |
+| `./scriptHub.sh scriptType=runners type=create projects=<projects> recreateFiles=<true/false>`                              | This command is to copy the runners from the projects folder to the **Intellij only**                                                                                                               |
 | `./scriptHub.sh scriptType=runners type=<update/test> projects=<projects> env=<env>`                                        | This command is to update the environment variables from the runners inside **Intellij  only**. Check the [Configure Environments](documentation/RUNNERS.md#configure-environments-for-the-runners) |
 | `./scriptHub.sh scriptType=win type=kill_port_usage port=<port>`                                                            | This command is to kill a process using the selected port on windows OS                                                                                                                             |
 | `./scriptHub.sh scriptType=git type=squash numberOfCommits=<number> newCommitText=\"<commit text>\" projectPath=\"<path>\"` | This Command is to squash commits into one  [GIT Squash](documentation/GIT.md#git-squash)                                                                                                           |
@@ -65,7 +56,7 @@ To use Script Hub, follow these steps:
 | type            | This argument is to identify the type of action to be used                                                                                                                              |
 | <hr />          | <hr />                                                                                                                                                                                  |
 | projects        | This argument is to identify the projects of the runners to configure. **Note:** If nothing is passed, this will look at the folder projects, but the "demo-" projects will be excluded |
-| createFiles     | This argument is to identify if the create runners will override existing files                                                                                                         |
+| recreateFiles   | This argument is to identify if the create runners will override existing files                                                                                                         |
 | env             | This argument is to identify the environment configure in the runners                                                                                                                   |
 | <hr />          | <hr />                                                                                                                                                                                  |
 | scriptName      | This argument is to identify what will be the type of script to generate                                                                                                                |

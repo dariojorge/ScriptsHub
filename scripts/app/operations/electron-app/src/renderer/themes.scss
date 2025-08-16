@@ -1,0 +1,21 @@
+:root {
+  background-color: var(--bg-color);
+}
+
+[data-theme='dark'] {
+  --bg-color: #1e1e1e;
+  --bg-color-hover: #ffffff;
+  --text-color-hover: #000000;
+  --text-color: #f5f5f5;
+  --tab-bg: #2a2a2a;
+  --tab-active-color: #66aaff;
+}
+
+[data-theme='light'] {
+  --bg-color: #ffffff;
+  --bg-color-hover: #000000;
+  --text-color-hover: #ffffff;
+  --text-color: #000000;
+  --tab-bg: #f0f0f0;
+  --tab-active-color: #007bff;
+}
