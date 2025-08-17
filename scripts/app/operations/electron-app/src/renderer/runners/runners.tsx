@@ -1,109 +1,112 @@
 import { useEffect, useRef, useState } from "react";
-import { firstElement, getElementByType } from "../utils/utils";
-import CardList from "../cards/card-list";
+import { loadRunnerProfiles } from "../db/db-runners";
+import { camelToWords, firstElement } from "../utils/utils";
 
-const RUNNERS = "runners";
+const RUNNERS_PROFILE_DEFAULT: RunnersProfileModel = {
+    id: Date.now(),
+    title: "",
+    description: "",
+    scriptType: "runners",
+    type: "create",
+    projects: [],
+    recreateFiles: false,
+    env: "test",
+    additionalArgs: [{ key: "", value: false }],
+    activeProfile: false
+};
 
-const RunnersComponent: React.FC = () => {
+const RunnersComponent = () => {
     const isInitialRender = useRef(false);
-    const [baseFilePath, setBaseFilePath] = useState<string>();
-    const [settingsData, setSettingsData] = useState<SettingsModel>();
-    const [runnersPath, setRunnersPath] = useState<string>();
-    const [runnersData, setRunnersData] = useState<SettingsModel>();
-    const [runnersList, setRunnersList] = useState<string[]>();
-    const [operationsPath, setOperationsPath] = useState<string>();
-    const [operationsData, setOperationsData] = useState<SettingsModel>();
-    const [operationsList, setOperationsList] = useState<string[]>();
-    const [projects, setProjects] = useState<string[]>();
+    const [card, setCard] = useState<RunnersProfileModel>(RUNNERS_PROFILE_DEFAULT);
+    const [output, setOutput] = useState<string>();
 
     useEffect(() => {
         isInitialRender.current = true;
-        loadPath();
+
+        loadRunnerProfiles()
+            .then((profileData: any[]) => {
+                const activeProfile: RunnersProfileModel = firstElement(profileData.filter((profile: any) => profile.data.activeProfile)).data;
+                setCard(activeProfile);
+            });
+
+        window.electronAPI.onOutput((data) => {
+            setOutput((prev) => prev + data);
+        });
     }, []);
 
-    useEffect(() => {
-        if (isInitialRender.current) {
-            return;
-        }
+    const startRunner = async () => {
+        const projects = `projects=${card.projects.join(',')}`;
+        const scriptType = `scriptType=${card.scriptType}`;
+        const type = `type=${card.type}`;
+        let runner = `./scriptHub.sh ${scriptType} ${type} ${projects}`;
 
-        loadSettingsFile(baseFilePath!, setSettingsData);
-    }, [baseFilePath]);
-
-    useEffect(() => {
-        if (isInitialRender.current) {
-            return;
-        }
-
-        const runners = getElementByType(settingsData?.types!, RUNNERS);
-        const runnersPathFiltered: string = `${baseFilePath}${runners.basePath.replace(".", "")}`;
-        window.electronAPI.pathSep(runnersPathFiltered).then(value => setRunnersPath(value));
-    }, [settingsData]);
-
-    useEffect(() => {
-        if (isInitialRender.current) {
-            return;
-        }
-
-        loadSettingsFile(runnersPath!, setRunnersData);
-    }, [runnersPath]);
-
-    useEffect(() => {
-        if (isInitialRender.current) {
-            return;
-        }
-
-        const runners: string[] = [];
-        runnersData?.types.forEach(element => runners.push(element.type));
-        setRunnersList(runners);
-
-        const operations = firstElement(runnersData?.types!);
-        const operationsPathFiltered: string = `${runnersPath}${operations.basePath.replace(".\/", "")}`;
-        window.electronAPI.pathSep(operationsPathFiltered).then(value => setOperationsPath(value));
-    }, [runnersData]);
-
-    useEffect(()=> {
-        if (isInitialRender.current) {
-            return;
-        }
-
-        loadSettingsFile(operationsPath!, setOperationsData);
-    }, [operationsPath]);
-
-    useEffect(() => {
-        if (isInitialRender.current) {
-            isInitialRender.current = false;
-            return;
-        }
-
-        const operations: string[] = [];
-        operationsData?.types.forEach(element => operations.push(element.type));
-        setOperationsList(operations);
-    }, [operationsData]);
-
-    const loadPath = async () => {
-        const base = await window.electronAPI.getAppPath();
-        const root = await window.electronAPI.goUpFolders(base, "../../../..");
-        setBaseFilePath(root);
-
-        const projectsPath = await window.electronAPI.pathSep(`${root}/projects`);
-        setProjects(await window.electronAPI.getListOfFolders(projectsPath));
-    }
-
-    const loadSettingsFile = async (filePath: string, setData: any) => {
-        const result = await window.electronAPI.loadFile(`${filePath}/settings.json`);
-
-        if (result.success) {
-            const typeList: SettingsModel = JSON.parse(result.data);
-            setData(typeList);
+        if (card.type === "create") {
+            runner += ` recreateFiles=${card.recreateFiles}`;
         } else {
-            console.error('Failed to load file:', result.error);
+            runner += ` env=${card.env}`;
+            card.additionalArgs.forEach(args => {
+                runner += ` ${args.key}=${args.value}`;
+            });
         }
+        
+        setOutput(`Running the command: ${runner}`);
+        await window.electronAPI.execSync(`${runner}`);
     }
 
     return (
         <>
-            <div>⚙️ RUNNERS PROFILES</div>
-            <CardList projects={projects!}></CardList>
+            <div>⚙️ SETTINGS Content</div>
+
+            <div key={card.id} className={`output-card ${card.activeProfile ? 'active-profile' : ''}`}>
+                <h4 className='title'>{card.title}</h4>
+                <p className='description'>
+                    <strong>Description:</strong> {card.description || "N/A"}
+                </p>
+                <p>
+                    <strong>Script Type:</strong> {card.scriptType}
+                </p>
+                <p>
+                    <strong>Type:</strong> {card.type}
+                </p>
+                {card.projects.length > 0 && (
+                    <p>
+                        <strong>Projects:</strong> {card.projects.join(', ')}
+                    </p>
+                )}
+                {card.type === "create" && (
+                    <p>
+                        <strong>Recreate Files:</strong> {card.recreateFiles ? '✅ Active' : '❌ Inactive'}
+                    </p>
+                )}
+                {card.type !== "create" && (
+                    <p>
+                        <strong>Env:</strong> {card.env}
+                    </p>
+                )}
+                {card.additionalArgs.length > 0 && card.type !== "create" &&
+                    card.additionalArgs.map((arg) => (
+                        <p>
+                            <strong>{camelToWords(arg.key)}:</strong> {arg.value ? '✅ Active' : '❌ Inactive'}
+                        </p>
+                    ))
+                }
+
+                <button onClick={() => startRunner()}>Run Profile</button>
+
+                <pre
+                    style={{
+                        marginTop: 20,
+                        backgroundColor: '#222',
+                        color: '#0f0',
+                        padding: 10,
+                        height: '300px',
+                        overflowY: 'auto',
+                        whiteSpace: 'pre-wrap',
+                    }}
+                >
+                    {output}
+                </pre>
+            </div>
         </>
     );
 }

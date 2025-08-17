@@ -94,7 +94,7 @@ const getEditSettingsFile = (argsObj) => {
     const settingsJson = {
         "name": argsObj.scriptName,
         "type": argsObj.scriptName,
-        "basePath": `/${argsObj.scriptName}/`,
+        "basePath": `./scripts/${argsObj.scriptName}/`,
         "script": `${argsObj.scriptName}.js`
     }
     jsonData.types.push(settingsJson);

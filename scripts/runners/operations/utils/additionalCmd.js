@@ -30,8 +30,7 @@ const buildArgsObj = (argsObj) => {
 const processCmd = (cmdObj, argsObj) => {
     switch (cmdObj.type.toUpperCase()) {
         case TYPE.EXECUTE:
-            const conditionBoolean = convertStringToBoolean(cmdObj.value);
-            executeCmd(conditionBoolean, argsObj, cmdObj);
+            executeCmd(convertStringToBoolean(cmdObj.value), argsObj, cmdObj);
             break;
         case TYPE.ARG:
             const conditionBoolean = convertStringToBoolean(getArgValue(argsObj.args, cmdObj.value))

@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import fs from "fs";
 import { findOne, getAll, insert, removeOne, updateData } from './db/db-control';
+import runCommand from './child-process/ChildProcess';
 
 // TODO: Need to revisit this one
 
@@ -75,11 +76,14 @@ ipcMain.handle('db-get-all', async (event, id: string): Promise<any> => {
   return getAll(id);
 });
 
-
 ipcMain.handle('db-remove-one', async (event, id: string): Promise<any> => {
   return removeOne(id);
 });
 
 ipcMain.handle('db-update', async (event, id: string, data: any) => {
   return updateData(id, data);
+});
+
+ipcMain.handle('exec-sync', async (event, cmd: string) => {
+  return runCommand(cmd, event);
 });

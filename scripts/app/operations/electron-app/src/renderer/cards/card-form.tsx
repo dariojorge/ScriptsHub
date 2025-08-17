@@ -154,6 +154,7 @@ const CardFromComponent = (props: { cards: any, setCards: any, projects: string[
             <div className="input-card">
                 <h3>Add a New Card</h3>
                 <div>
+                    {"Title"}<span className="required">*</span>
                     <input name="title" placeholder="Title" value={formData.title} maxLength={maxCharsTitle} onChange={handleChange} />
                     {!isBlank(errors.titleError) && <p style={{ color: 'red' }}>{errors.titleError}</p>}
                     <p>{formData.title.length}/{maxCharsTitle} characters</p>

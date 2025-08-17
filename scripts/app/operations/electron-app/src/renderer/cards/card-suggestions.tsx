@@ -112,7 +112,7 @@ const CardSuggestionsComponent = (props: { title: string, projects: string[], re
 
     return (
         <>
-            {props.title}:
+            {props.title}<span className="required">*</span>
             <div className="tag-input-wrapper">
 
                 {tags.map((tag) => (

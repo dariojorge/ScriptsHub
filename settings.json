@@ -45,7 +45,7 @@
     {
       "name": "app",
       "type": "app",
-      "basePath": "/app/",
+      "basePath": "./scripts/app/",
       "script": "app.js"
     }
   ],

@@ -12,4 +12,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   dbRemoveOne: (id: string) => ipcRenderer.invoke('db-remove-one', id),
   dbUpdate: (id: string, data: any) => ipcRenderer.invoke('db-update', id, data),
   getListOfFolders: (path: string) => ipcRenderer.invoke('get-list-of-folders', path),
+  execSync: (cmd: string) => ipcRenderer.invoke('exec-sync', cmd),
+  onOutput: (callback: (data: string) => void) => ipcRenderer.on('command-output', (_event, data) => callback(data)),
 });

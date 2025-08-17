@@ -14,6 +14,8 @@ declare global {
       dbRemoveOne: (id: string) => Promise<any>;
       dbUpdate: (id: string, data: any) => Promise<any>;
       getListOfFolders: (path: string) => Promise<string[]>;
+      execSync: (cmd: string) => Promise<string>;
+      onOutput: (callback: (data: string) => void) => void;
     }
   }
 
@@ -22,4 +24,6 @@ declare global {
       NODE_ENV: 'development' | 'production';
     }
   }
+
+  const __APP_VERSION__: string;
 }

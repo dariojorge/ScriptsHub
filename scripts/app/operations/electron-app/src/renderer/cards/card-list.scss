@@ -86,8 +86,12 @@
   }
 
   .active-profile {
-    box-shadow: 0 8px 20px rgba(247, 250, 84, 0.2);
+    box-shadow: 0 8px 20px var(--card-highlight);
     transform: translateY(-4px);
+  }
+
+  .required {
+    color: red;
   }
 
   .tag-input-wrapper {

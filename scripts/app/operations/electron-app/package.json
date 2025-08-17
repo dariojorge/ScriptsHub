@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "dist/main.js",
   "scripts": {
+    "start:debug": "tsc && electron dist/main.js --inspect-brk=9229",
     "dev:test": "npm run build && npm run dev:electron",
     "dev:build": "tsc --watch",
     "dev:electron": "electron .",

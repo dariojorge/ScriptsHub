@@ -1,14 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import TabManagerComponent from './tab-manager/tab-manager';
 import './themes.scss';
+import { loadTheme } from './db/DbSettings';
 
 const App = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
   useEffect(() => {
     if (window.electronAPI?.ping) {
       window.electronAPI.ping().then((res) => {
@@ -17,19 +12,16 @@ const App = () => {
     } else {
       console.warn('window.electronAPI is not defined');
     }
+
+
+    loadTheme().then(theme => {
+      document.documentElement.setAttribute('data-theme', theme.data)
+    });
   }, []);
 
   return (
     <>
-      <div>
-        <button
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          style={{ marginBottom: '1rem' }}
-        >
-          Toggle Theme
-        </button>
-        <TabManagerComponent />
-      </div>
+      <TabManagerComponent />
     </>
   );
 };
