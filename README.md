@@ -45,6 +45,7 @@ To use Script Hub, follow these steps:
 | `./scriptHub.sh scriptType=template type=runner projectName=<projectName> techType=<techType>`                              | This command is to generate a new default runner structure for a project                                                                                                                            |
 | `./scriptHub.sh scriptType=demo type=quarkus demoType=demo-quarkus version=<java-version>`                                  | This command sets up the quarkus demo to be used check [Demo-Quarkus Setup](documentation/QUARKUS_DEMO.md#how-to-setup-demo-quarkus) **Note:** The java version should be 17+                       |
 | `./scriptHub.sh scriptType=trace type=collector-jaeger`                                                                     |                                                                                                                                                                                                     |
+| `./scriptHub.sh scriptType=app type=start checkUpdate=<true/false>`                                                         |                                                                                                                                                                                                     |
 
 <p style="text-align:right;">(<a href="#readme-top">back to top</a>)</p>
 

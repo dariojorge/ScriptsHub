@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const packageJson = require('./package.json');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -12,6 +14,11 @@ module.exports = {
       { test: /\.ts$/, loader: 'ts-loader' }
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __APP_VERSION__: JSON.stringify(packageJson.version),
+    }),
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
   },

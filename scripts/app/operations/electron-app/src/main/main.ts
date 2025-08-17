@@ -4,6 +4,8 @@ import fs from "fs";
 import { findOne, getAll, insert, removeOne, updateData } from './db/db-control';
 import runCommand from './child-process/ChildProcess';
 
+declare const __APP_VERSION__: string;
+
 // TODO: Need to revisit this one
 
 const createWindow = () => {
@@ -22,6 +24,12 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
+  if (process.argv.includes('--version')) {
+    console.log("App version: " + __APP_VERSION__);
+    app.quit();
+    return __APP_VERSION__;
+  }
+
   createWindow();
 
   app.on('activate', () => {
